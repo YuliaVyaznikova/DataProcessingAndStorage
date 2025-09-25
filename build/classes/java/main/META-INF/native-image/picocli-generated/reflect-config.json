@@ -1,0 +1,41 @@
+[
+  {
+    "name" : "picocli.CommandLine$AutoHelpMixin",
+    "allDeclaredConstructors" : true,
+    "allPublicConstructors" : true,
+    "allDeclaredMethods" : true,
+    "allPublicMethods" : true,
+    "fields" : [
+      { "name" : "helpRequested" },
+      { "name" : "versionRequested" }
+    ]
+  },
+  {
+    "name" : "ru.nsu.vyaznikova.KeyClient",
+    "allDeclaredConstructors" : true,
+    "allPublicConstructors" : true,
+    "allDeclaredMethods" : true,
+    "allPublicMethods" : true,
+    "fields" : [
+      { "name" : "abort" },
+      { "name" : "delaySeconds" },
+      { "name" : "host" },
+      { "name" : "name" },
+      { "name" : "outDir" },
+      { "name" : "port" }
+    ]
+  },
+  {
+    "name" : "ru.nsu.vyaznikova.KeyServer",
+    "allDeclaredConstructors" : true,
+    "allPublicConstructors" : true,
+    "allDeclaredMethods" : true,
+    "allPublicMethods" : true,
+    "fields" : [
+      { "name" : "generatorThreads" },
+      { "name" : "issuerKeyPath" },
+      { "name" : "issuerName" },
+      { "name" : "port" }
+    ]
+  }
+]
