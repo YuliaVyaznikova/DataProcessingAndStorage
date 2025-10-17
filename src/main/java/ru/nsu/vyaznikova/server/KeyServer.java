@@ -144,7 +144,7 @@ public class KeyServer {
     }
 
     private static class ConnState {
-        final ByteBuffer buf = ByteBuffer.allocate(1024);
+        final ByteBuffer buf = ByteBuffer.allocate(Protocol.MAX_NAME_LEN);
         final ArrayList<Byte> nameBytes = new ArrayList<>();
         boolean nameCompleted = false;
         boolean logged = false;
