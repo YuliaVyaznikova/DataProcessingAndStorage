@@ -1,5 +1,12 @@
 package ru.nsu.vyaznikova.client;
 
+import ru.nsu.vyaznikova.common.Protocol;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.Callable;
@@ -82,14 +89,73 @@ public class KeyClient implements Callable<Integer> {
 
     @Override
     public Integer call() {
-        System.out.println("[KeyClient] Command-line parameters:");
-        System.out.printf("  host = %s%n", host);
-        System.out.printf("  port = %d%n", port);
-        System.out.printf("  name = %s%n", name);
-        System.out.printf("  delaySeconds = %d%n", delaySeconds);
-        System.out.printf("  abort = %s%n", abort);
-        System.out.printf("  outDir = %s%n", outDir.toAbsolutePath());
-        return 0;
+        System.out.println("[KeyClient] Starting...");
+        System.out.printf("[KeyClient] host=%s port=%d name=%s delay=%ds abort=%s out=%s%n",
+                host, port, name, delaySeconds, abort, outDir.toAbsolutePath());
+
+        try {
+            Files.createDirectories(outDir);
+        } catch (IOException e) {
+            System.err.println("[KeyClient] Failed to create output directory: " + outDir + ": " + e.getMessage());
+            return 1;
+        }
+
+        try (Socket socket = new Socket(host, port)) {
+            socket.setTcpNoDelay(true);
+            OutputStream os = socket.getOutputStream();
+            InputStream is = socket.getInputStream();
+
+            byte[] nameBytes = name.getBytes(Protocol.NAME_CHARSET);
+            os.write(nameBytes);
+            os.write(Protocol.NAME_TERMINATOR);
+            os.flush();
+
+            if (abort) {
+                System.out.println("[KeyClient] Abort requested after sending name. Closing.");
+                return 0;
+            }
+
+            if (delaySeconds > 0) {
+                try { Thread.sleep(delaySeconds * 1000L); } catch (InterruptedException ignored) {}
+            }
+
+            int lenKey = readIntBE(is);
+            byte[] keyPem = (lenKey > 0) ? readExact(is, lenKey) : new byte[0];
+            int lenCert = readIntBE(is);
+            byte[] certPem = (lenCert > 0) ? readExact(is, lenCert) : new byte[0];
+
+            if (lenKey == 0 && lenCert == 0) {
+                System.err.println("[KeyClient] Server returned error lengths (0,0)");
+                return 2;
+            }
+
+            Path keyPath = outDir.resolve(name + ".key");
+            Path crtPath = outDir.resolve(name + ".crt");
+            Files.write(keyPath, keyPem);
+            Files.write(crtPath, certPem);
+            System.out.printf("[KeyClient] Saved %s and %s%n", keyPath.toAbsolutePath(), crtPath.toAbsolutePath());
+            return 0;
+        } catch (IOException e) {
+            System.err.println("[KeyClient] I/O error: " + e.getMessage());
+            return 1;
+        }
+    }
+
+    private static int readIntBE(InputStream is) throws IOException {
+        byte[] b = readExact(is, 4);
+        return ((b[0] & 0xFF) << 24) | ((b[1] & 0xFF) << 16) | ((b[2] & 0xFF) << 8) | (b[3] & 0xFF);
+        
+    }
+
+    private static byte[] readExact(InputStream is, int len) throws IOException {
+        byte[] buf = new byte[len];
+        int off = 0;
+        while (off < len) {
+            int r = is.read(buf, off, len - off);
+            if (r < 0) throw new IOException("Connection closed while reading " + off + "/" + len + " bytes");
+            off += r;
+        }
+        return buf;
     }
 
     public static void main(String[] args) {
