@@ -1,6 +1,9 @@
 package ru.nsu.vyaznikova.server;
 
 import ru.nsu.vyaznikova.common.Protocol;
+import ru.nsu.vyaznikova.common.CryptoUtil;
+import ru.nsu.vyaznikova.common.PemUtil;
+import ru.nsu.vyaznikova.common.KeyData;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -8,31 +11,69 @@ import java.nio.ByteBuffer;
 import java.nio.channels.*;
 import java.nio.charset.Charset;
 import java.util.*;
+import java.util.concurrent.*;
+import java.security.*;
+import java.security.cert.X509Certificate;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class KeyServer {
     private final int port;
+    private final int threads;
+    private final String issuerDn;
+    private final PrivateKey issuerKey;
 
-    public KeyServer(int port) {
+    private final ExecutorService generatorPool;
+    private final ConcurrentHashMap<String, CompletableFuture<KeyData>> cache = new ConcurrentHashMap<>();
+    private final ConcurrentLinkedQueue<Runnable> pending = new ConcurrentLinkedQueue<>();
+
+    public KeyServer(int port, int threads, String issuerDn, PrivateKey issuerKey) {
         this.port = port;
+        this.threads = threads;
+        this.issuerDn = issuerDn;
+        this.issuerKey = issuerKey;
+        this.generatorPool = Executors.newFixedThreadPool(this.threads);
     }
 
     private static void printUsage() {
-        System.out.println("Usage: key-server --port <port>");
+        System.out.println("Usage: key-server --port <port> --threads <N> --issuer <DN> --key <path-to-issuer-private-pem>");
         System.out.println("Options:");
-        System.out.println("  -p, --port    Server TCP port (required)");
+        System.out.println("  -p, --port     Server TCP port (required)");
+        System.out.println("      --threads  Generator thread count (required)");
+        System.out.println("      --issuer   Issuer DN, e.g. CN=KeyIssuer,O=NSU (required)");
+        System.out.println("      --key      Issuer private key PEM path (required)");
         System.out.println("  -?, --help    Show this help");
     }
 
-    private static int parsePort(String[] args) {
-        Integer port = null;
+    private static class Config {
+        int port;
+        int threads;
+        String issuerDn;
+        Path keyPath;
+    }
+
+    private static Config parseArgs(String[] args) {
+        Config cfg = new Config();
+        Integer port = null; Integer threads = null; String issuer = null; Path keyPath = null;
         for (int i = 0; i < args.length; i++) {
             String a = args[i];
             switch (a) {
                 case "-p":
                 case "--port":
                     if (i + 1 >= args.length) { System.err.println("--port requires a value"); printUsage(); System.exit(2); }
-                    try { port = Integer.parseInt(args[++i]); }
-                    catch (NumberFormatException ex) { System.err.println("--port must be an integer"); System.exit(2); }
+                    try { port = Integer.parseInt(args[++i]); } catch (NumberFormatException ex) { System.err.println("--port must be an integer"); System.exit(2); }
+                    break;
+                case "--threads":
+                    if (i + 1 >= args.length) { System.err.println("--threads requires a value"); printUsage(); System.exit(2); }
+                    try { threads = Integer.parseInt(args[++i]); } catch (NumberFormatException ex) { System.err.println("--threads must be an integer"); System.exit(2); }
+                    break;
+                case "--issuer":
+                    if (i + 1 >= args.length) { System.err.println("--issuer requires a value"); printUsage(); System.exit(2); }
+                    issuer = args[++i];
+                    break;
+                case "--key":
+                    if (i + 1 >= args.length) { System.err.println("--key requires a value"); printUsage(); System.exit(2); }
+                    keyPath = Paths.get(args[++i]);
                     break;
                 case "-?":
                 case "--help":
@@ -46,16 +87,16 @@ public class KeyServer {
                     System.exit(2);
             }
         }
-        if (port == null || port == 0) {
-            System.err.println("Missing required option --port");
+        if (port == null || port == 0 || threads == null || threads <= 0 || issuer == null || keyPath == null) {
+            System.err.println("Missing required options");
             printUsage();
             System.exit(2);
         }
-        return port;
+        cfg.port = port; cfg.threads = threads; cfg.issuerDn = issuer; cfg.keyPath = keyPath; return cfg;
     }
 
     public int run() throws Exception {
-        System.out.printf("[KeyServer] Starting skeleton on port %d...%n", port);
+        System.out.printf("[KeyServer] Starting on port %d, threads=%d, issuer='%s'%n", port, threads, issuerDn);
 
         try (Selector selector = Selector.open();
              ServerSocketChannel server = ServerSocketChannel.open()) {
@@ -67,6 +108,7 @@ public class KeyServer {
 
             while (true) {
                 selector.select();
+                for (Runnable r; (r = pending.poll()) != null; ) r.run();
                 Iterator<SelectionKey> it = selector.selectedKeys().iterator();
                 while (it.hasNext()) {
                     SelectionKey key = it.next();
@@ -77,12 +119,14 @@ public class KeyServer {
                             SocketChannel ch = server.accept();
                             if (ch != null) {
                                 ch.configureBlocking(false);
-                                ch.register(selector, SelectionKey.OP_READ);
-                                states.put(ch, new ConnState());
+                                ConnState st = new ConnState();
+                                SelectionKey k2 = ch.register(selector, SelectionKey.OP_READ, st);
+                                st.key = k2;
+                                states.put(ch, st);
                             }
                         } else if (key.isReadable()) {
                             SocketChannel ch = (SocketChannel) key.channel();
-                            ConnState st = states.get(ch);
+                            ConnState st = (ConnState) key.attachment();
                             if (st == null) {
                                 closeQuiet(ch, states);
                                 continue;
@@ -122,7 +166,27 @@ public class KeyServer {
                                 st.logged = true;
                                 String name = st.getName(Protocol.NAME_CHARSET);
                                 System.out.printf("[KeyServer] Received name: '%s' from %s%n", name, ch);
-                                // for skeleton stage: close connection after logging
+                                CompletableFuture<KeyData> fut = cache.computeIfAbsent(name, n ->
+                                        CompletableFuture.supplyAsync(() -> generateForName(n), generatorPool)
+                                                .whenComplete((res, ex) -> { if (ex != null) cache.remove(n); })
+                                );
+                                fut.whenComplete((data, ex) -> {
+                                    if (ex != null) {
+                                        enqueue(() -> prepareAndStartWrite(key, states, errorResponse()));
+                                    } else {
+                                        enqueue(() -> prepareAndStartWrite(key, states, buildResponse(data)));
+                                    }
+                                    selector.wakeup();
+                                });
+                            }
+                        } else if (key.isWritable()) {
+                            SocketChannel ch = (SocketChannel) key.channel();
+                            ConnState st = (ConnState) key.attachment();
+                            if (st == null || st.out == null) { key.interestOps(SelectionKey.OP_READ); continue; }
+                            ch.write(st.out);
+                            if (!st.out.hasRemaining()) {
+                                st.out = null;
+                                key.interestOps(0);
                                 closeQuiet(ch, states);
                             }
                         }
@@ -148,6 +212,8 @@ public class KeyServer {
         final ArrayList<Byte> nameBytes = new ArrayList<>();
         boolean nameCompleted = false;
         boolean logged = false;
+        SelectionKey key;
+        ByteBuffer out;
 
         String getName(Charset cs) {
             byte[] a = new byte[nameBytes.size()];
@@ -156,11 +222,59 @@ public class KeyServer {
         }
     }
 
+    private static void writeIntBE(ByteBuffer buf, int v) {
+        buf.put((byte)((v >>> 24) & 0xFF));
+        buf.put((byte)((v >>> 16) & 0xFF));
+        buf.put((byte)((v >>> 8) & 0xFF));
+        buf.put((byte)(v & 0xFF));
+    }
+
+    private static byte[] buildResponse(KeyData data) {
+        byte[] k = data.getPrivateKeyPem();
+        byte[] c = data.getCertificatePem();
+        ByteBuffer b = ByteBuffer.allocate(Protocol.LENGTH_FIELD_BYTES + k.length + Protocol.LENGTH_FIELD_BYTES + c.length);
+        writeIntBE(b, k.length);
+        b.put(k);
+        writeIntBE(b, c.length);
+        b.put(c);
+        return b.array();
+    }
+
+    private static byte[] errorResponse() {
+        ByteBuffer b = ByteBuffer.allocate(Protocol.LENGTH_FIELD_BYTES * 2);
+        writeIntBE(b, Protocol.ERROR_LENGTH);
+        writeIntBE(b, Protocol.ERROR_LENGTH);
+        return b.array();
+    }
+
+    private void enqueue(Runnable r) { pending.add(r); }
+
+    private void prepareAndStartWrite(SelectionKey key, Map<SocketChannel, ConnState> states, byte[] payload) {
+        SocketChannel ch = (SocketChannel) key.channel();
+        ConnState st = (ConnState) key.attachment();
+        if (st == null) return;
+        st.out = ByteBuffer.wrap(payload);
+        key.interestOps(SelectionKey.OP_WRITE);
+    }
+
+    private KeyData generateForName(String name) {
+        try {
+            KeyPair kp = CryptoUtil.generateRsa8192();
+            X509Certificate cert = CryptoUtil.issueCertificate(issuerDn, name, kp.getPublic(), issuerKey);
+            byte[] keyPem = PemUtil.privateKeyToPemBytes(kp.getPrivate());
+            byte[] certPem = PemUtil.certificateToPemBytes(cert);
+            return new KeyData(keyPem, certPem);
+        } catch (Exception e) {
+            throw new CompletionException(e);
+        }
+    }
+
     public static void main(String[] args) {
-        int port = parsePort(args);
+        Config cfg = parseArgs(args);
         int exit = 0;
         try {
-            exit = new KeyServer(port).run();
+            PrivateKey issuerKey = CryptoUtil.loadPrivateKeyFromPem(cfg.keyPath);
+            exit = new KeyServer(cfg.port, cfg.threads, cfg.issuerDn, issuerKey).run();
         } catch (Exception e) {
             e.printStackTrace();
             exit = 1;
