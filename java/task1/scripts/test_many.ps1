@@ -28,13 +28,19 @@ function Stop-Server {
     }
 }
 
+function Build-Once {
+    param($ProjectDir)
+    & (Join-Path $ProjectDir 'gradlew.bat') 'build' '-x' 'test' | Out-Null
+}
+
 function Start-ClientJob {
     param([int]$Index)
     $name = "clnt_$Index"
     $delay = Get-Random -Minimum 0 -Maximum ($MaxDelay + 1)
-    $argLine = "--host 127.0.0.1 --port $Port --name $name --out out --delay $delay"
-    $gradleArgs = "runClient -Pargs=""$argLine"""
-    Start-Process -FilePath (Join-Path $ProjectDir 'gradlew.bat') -ArgumentList $gradleArgs -WorkingDirectory $ProjectDir -NoNewWindow | Out-Null
+    $cp = Join-Path $ProjectDir 'build\classes\java\main'
+    $jargs = @('-cp', $cp, 'ru.nsu.vyaznikova.client.KeyClient', '--host', '127.0.0.1', '--port', $Port, '--name', $name, '--out', 'out')
+    if ($delay -gt 0) { $jargs += @('--delay', $delay) }
+    Start-Process -FilePath 'java' -ArgumentList $jargs -WorkingDirectory $ProjectDir -NoNewWindow | Out-Null
 }
 
 try {
@@ -42,6 +48,7 @@ try {
     if (Test-Path $outDir) { Remove-Item -Recurse -Force $outDir }
     New-Item -ItemType Directory -Force -Path $outDir | Out-Null
 
+    Build-Once -ProjectDir $ProjectDir
     $server = Start-Server -ProjectDir $ProjectDir -Port $Port -Threads $Threads -IssuerDn $IssuerDn -IssuerKeyPath $IssuerKeyPath
 
     Write-Host "[TEST] Starting $Clients clients..."

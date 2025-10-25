@@ -26,17 +26,23 @@ function Stop-Server {
     }
 }
 
+function Build-Once {
+    param($ProjectDir)
+    & (Join-Path $ProjectDir 'gradlew.bat') 'build' '-x' 'test' | Out-Null
+}
+
 function Run-Client {
     param($ProjectDir, [string]$ServerHost, [int]$Port, [string]$Name, [int]$Delay=0, [switch]$Abort, [string]$OutDir="out")
-    $argLine = "--host $ServerHost --port $Port --name $Name --out $OutDir"
-    if ($Delay -gt 0) { $argLine += " --delay $Delay" }
-    if ($Abort) { $argLine += " --abort" }
-    $gradleArgs = "runClient -Pargs=""$argLine"""
-    Write-Host "[TEST] Client: $gradleArgs"
-    $res = Start-Process -FilePath (Join-Path $ProjectDir 'gradlew.bat') -ArgumentList $gradleArgs -PassThru -Wait -NoNewWindow -WorkingDirectory $ProjectDir
+    $cp = Join-Path $ProjectDir 'build\classes\java\main'
+    $jargs = @('-cp', $cp, 'ru.nsu.vyaznikova.client.KeyClient', '--host', $ServerHost, '--port', $Port, '--name', $Name, '--out', $OutDir)
+    if ($Delay -gt 0) { $jargs += @('--delay', $Delay) }
+    if ($Abort) { $jargs += '--abort' }
+    Write-Host "[TEST] Client (java): $($jargs -join ' ')"
+    Start-Process -FilePath 'java' -ArgumentList $jargs -PassThru -Wait -NoNewWindow -WorkingDirectory $ProjectDir | Out-Null
 }
 
 try {
+    Build-Once -ProjectDir $ProjectDir
     $server = Start-Server -ProjectDir $ProjectDir -Port $Port -Threads $Threads -IssuerDn $IssuerDn -IssuerKeyPath $IssuerKeyPath
 
     Run-Client -ProjectDir $ProjectDir -ServerHost '127.0.0.1' -Port $Port -Name 'alice' -OutDir 'out'

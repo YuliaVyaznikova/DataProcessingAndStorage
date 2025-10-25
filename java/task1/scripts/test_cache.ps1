@@ -28,12 +28,17 @@ function Stop-Server {
     }
 }
 
+function Build-Once {
+    param($ProjectDir)
+    & (Join-Path $ProjectDir 'gradlew.bat') 'build' '-x' 'test' | Out-Null
+}
+
 function Start-ClientJob {
     param([string]$OutDir)
     New-Item -ItemType Directory -Force -Path (Join-Path $ProjectDir $OutDir) | Out-Null
-    $argLine = "--host 127.0.0.1 --port $Port --name $Name --out $OutDir"
-    $gradleArgs = @('runClient', ("-Pargs=$argLine"))
-    Start-Process -FilePath (Join-Path $ProjectDir 'gradlew.bat') -ArgumentList $gradleArgs -WorkingDirectory $ProjectDir -NoNewWindow | Out-Null
+    $cp = Join-Path $ProjectDir 'build\classes\java\main'
+    $jargs = @('-cp', $cp, 'ru.nsu.vyaznikova.client.KeyClient', '--host', '127.0.0.1', '--port', $Port, '--name', $Name, '--out', $OutDir)
+    Start-Process -FilePath 'java' -ArgumentList $jargs -WorkingDirectory $ProjectDir -NoNewWindow | Out-Null
 }
 
 try {
@@ -42,6 +47,7 @@ try {
         $outDirs += ("out_cache_" + $i)
     }
 
+    Build-Once -ProjectDir $ProjectDir
     $server = Start-Server -ProjectDir $ProjectDir -Port $Port -Threads $Threads -IssuerDn $IssuerDn -IssuerKeyPath $IssuerKeyPath
 
     Write-Host "[TEST] Starting $Clients clients with the same name '$Name'..."
@@ -76,3 +82,4 @@ finally {
     Stop-Server -proc $server
     if ($Pause) { Read-Host "[TEST] Done. Press Enter to exit..." | Out-Null }
 }
+
