@@ -96,6 +96,83 @@ public class LinkedStringList implements IterableStringList {
         return res;
     }
 
+
+    public int bubblePass(long insideDelayMs, long betweenDelayMs, Runnable stepHook) throws InterruptedException {
+        int swaps = 0;
+        Node prev = head;
+
+        while (true) {
+            Node nextPrev = null; // where prev should move after unlocking
+
+            // lock prev first (closer to head)
+            prev.lock.lock();
+            try {
+                Node a = prev.next;
+                if (a == null || a == tail) {
+                    return swaps; // list shorter than 2 from this point
+                }
+
+                a.lock.lock();
+                try {
+                    // adjacency check prev->a
+                    if (prev.next != a || a.prev != prev) {
+                        nextPrev = prev; // retry with same prev
+                    } else {
+                        Node b = a.next;
+                        if (b == null || b == tail) {
+                            return swaps; // reached tail
+                        }
+
+                        b.lock.lock();
+                        try {
+                            // adjacency check a->b
+                            if (a.next != b || b.prev != a) {
+                                nextPrev = prev; // retry with same prev
+                            } else {
+                                // inside delay within pair lock
+                                if (insideDelayMs > 0) Thread.sleep(insideDelayMs);
+                                if (stepHook != null) stepHook.run();
+
+                                if (a.value.compareTo(b.value) > 0) {
+                                    // swap by relinking: prev <-> b <-> a <-> afterB
+                                    Node afterB = b.next; // can be tail
+
+                                    // detach a and b from current order and re-link swapped
+                                    prev.next = b;
+                                    b.prev = prev;
+
+                                    b.next = a;
+                                    a.prev = b;
+
+                                    a.next = afterB;
+                                    if (afterB != null) afterB.prev = a;
+
+                                    swaps++;
+                                    nextPrev = prev.next; // which is b after swap
+                                } else {
+                                    // advance without swap
+                                    nextPrev = a;
+                                }
+                            }
+                        } finally {
+                            b.lock.unlock();
+                        }
+                    }
+                } finally {
+                    a.lock.unlock();
+                }
+            } finally {
+                prev.lock.unlock();
+            }
+
+            // delay between steps outside locks
+            if (betweenDelayMs > 0) Thread.sleep(betweenDelayMs);
+
+            // move prev for next step
+            prev = (nextPrev != null) ? nextPrev : head;
+        }
+    }
+
     // internal doubly-linked node with its own lock
     private static final class Node {
         final ReentrantLock lock = new ReentrantLock();
