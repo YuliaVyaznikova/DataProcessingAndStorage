@@ -1,4 +1,4 @@
-﻿package ru.nsu.vyaznikova.sort;
+package ru.nsu.vyaznikova.sort;
 
 import ru.nsu.vyaznikova.list.LinkedStringList;
 import java.util.concurrent.atomic.AtomicLong;
