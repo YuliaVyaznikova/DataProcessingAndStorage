@@ -13,11 +13,11 @@ public class ComparisonTest {
 
     @Test
     void printComparisonLinkedVsArray() throws Exception {
-        int n = 2000;        // больше данных
-        int threads = 4;     // умеренная конкуренция
-        long insideMs = 0;   // без внутренних задержек — linked обычно быстрее
-        long betweenMs = 0;  // не маскируем различия
-        long windowMs = 3000; // чуть больше окно для стабильности
+        int n = 2000;
+        int threads = 4;
+        long insideMs = 0;
+        long betweenMs = 0;
+        long windowMs = 3000;
         int maxLen = 80;
 
         double linked = measureLinked(n, threads, insideMs, betweenMs, maxLen, windowMs);
@@ -38,11 +38,11 @@ public class ComparisonTest {
 
     @Test
     void printComparisonArrayFavoredScenario() throws Exception {
-        int n = 900;         // поменьше данных, чтобы рост задержек сильнее влиял
-        int threads = 20;    // высокая конкуренция
-        long insideMs = 12;  // высокая внутренняя задержка — чаще выигрывает arraylist_sync
-        long betweenMs = 0;  // не маскируем различия
-        long windowMs = 7000; // больше окно для стабильности
+        int n = 900;
+        int threads = 20;
+        long insideMs = 12;
+        long betweenMs = 0;
+        long windowMs = 7000;
         int maxLen = 80;
 
         double linked = measureLinked(n, threads, insideMs, betweenMs, maxLen, windowMs);
