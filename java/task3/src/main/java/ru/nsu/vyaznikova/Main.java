@@ -3,6 +3,9 @@ package ru.nsu.vyaznikova;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.time.Duration;
 
 public class Main {
     record Config(URI baseUrl, boolean verbose) {}
@@ -62,6 +65,25 @@ public class Main {
                 "  verbose=" + cfg.verbose);
         if (cfg.verbose) {
             System.out.println("HttpClient initialized");
+        }
+
+        try {
+            URI root = cfg.baseUrl.resolve("/");
+            if (cfg.verbose) System.out.println("GET " + root);
+            HttpRequest req = HttpRequest.newBuilder(root)
+                    .GET()
+                    .timeout(Duration.ofSeconds(15))
+                    .build();
+            HttpResponse<String> resp = http.send(req, HttpResponse.BodyHandlers.ofString());
+            if (cfg.verbose) System.out.println("<- status=" + resp.statusCode());
+            if (resp.statusCode() == 200) {
+                System.out.println(resp.body() == null ? "" : resp.body());
+            } else {
+                System.err.println("Non-200 status: " + resp.statusCode());
+            }
+        } catch (Exception e) {
+            System.err.println("Request failed: " + e.getMessage());
+            System.exit(2);
         }
     }
 
