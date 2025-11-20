@@ -6,6 +6,9 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import ru.nsu.vyaznikova.model.ResponseDto;
 
 public class Main {
     record Config(URI baseUrl, boolean verbose) {}
@@ -77,7 +80,16 @@ public class Main {
             HttpResponse<String> resp = http.send(req, HttpResponse.BodyHandlers.ofString());
             if (cfg.verbose) System.out.println("<- status=" + resp.statusCode());
             if (resp.statusCode() == 200) {
-                System.out.println(resp.body() == null ? "" : resp.body());
+                String body = resp.body();
+                if (body == null) {
+                    System.out.println("");
+                } else {
+                    ObjectMapper mapper = new ObjectMapper()
+                            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+                    ResponseDto dto = mapper.readValue(body, ResponseDto.class);
+                    System.out.println("message: " + dto.getMessage());
+                    System.out.println("successors: " + (dto.getSuccessors() == null ? 0 : dto.getSuccessors().size()));
+                }
             } else {
                 System.err.println("Non-200 status: " + resp.statusCode());
             }
