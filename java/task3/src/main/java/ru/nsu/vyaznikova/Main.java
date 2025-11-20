@@ -6,6 +6,8 @@ import ru.nsu.vyaznikova.http.HttpFactory;
 import ru.nsu.vyaznikova.crawler.AsyncCrawler;
 import ru.nsu.vyaznikova.cli.Args;
 import java.time.Duration;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,7 +17,7 @@ public class Main {
                 "  baseUrl=" + cfg.baseUrl() + "\n" +
                 "  verbose=" + cfg.verbose() + "\n" +
                 "  maxConcurrency=" + cfg.maxConcurrency() + "\n" +
-                "  totalTimeoutSec=" + cfg.totalTimeoutSec());
+                "  totalTimeoutSec=" + cfg.totalTimeoutSec() + (cfg.outPath() != null ? "\n  out=" + cfg.outPath() : ""));
         if (cfg.verbose()) {
             System.out.println("HttpClient initialized");
         }
@@ -27,8 +29,14 @@ public class Main {
                     cfg.verbose(),
                     cfg.maxConcurrency(),
                     Duration.ofSeconds(cfg.totalTimeoutSec()));
-            for (String m : messages) {
-                System.out.println(m);
+            if (cfg.outPath() != null) {
+                Path p = Path.of(cfg.outPath());
+                Files.write(p, messages);
+                System.out.println("Written " + messages.size() + " messages to " + p.toAbsolutePath());
+            } else {
+                for (String m : messages) {
+                    System.out.println(m);
+                }
             }
         } catch (Exception e) {
             System.err.println("Request failed: " + e.getMessage());
