@@ -1,17 +1,9 @@
-(ns task-c4)
+(ns c4)
 
 (declare supply-msg)
 (declare notify-msg)
 
 (defn storage
-  "Creates a new storage
-   ware - a name of ware to store (string)
-   notify-step - amount of stored items required for logger to react. 0 means to logging 
-   consumers - factories to notify when the storage is updated
-   returns a map that contains:
-     :storage - an atom to store items that can be used by factories directly
-     :ware - a stored ware name
-     :worker - an agent to send supply-msg"
   [ware notify-step & consumers]
   (let [counter (atom 0 :validator #(>= % 0)),
         worker-state {:storage counter,
@@ -23,13 +15,6 @@
      :worker (agent worker-state)}))
 
 (defn factory
-  "Creates a new factory
-   amount - number of items produced per cycle
-   duration - cycle duration in milliseconds
-   target-storage - a storage to put products with supply-msg
-   ware-amounts - a list of ware names and their amounts required for a single cycle
-   returns a map that contains:
-     :worker - an agent to send notify-msg"
   [amount duration target-storage & ware-amounts]
   (let [bill (apply hash-map ware-amounts),
         buffer (reduce-kv (fn [acc k _] (assoc acc k 0)) 
@@ -50,9 +35,6 @@
     {:worker (agent worker-state)}))
 
 (defn source
-  "Creates a source that is a thread that produces 'amount' of wares per cycle to store in 'target-storage'
-   and with given cycle 'duration' in milliseconds
-   returns Thread that must be run explicitly"
   [amount duration target-storage]
   (new Thread 
        (fn []
@@ -61,9 +43,6 @@
          (recur))))
 
 (defn supply-msg
-  "A message that can be sent to a storage worker to notify that the given 'amount' of wares should be added.
-   Adds the given 'amount' of ware to the storage and notifies all the registered factories about it 
-   state - see code of 'storage' for structure"
   [state amount]
   (swap! (state :storage) #(+ % amount))      ;update counter, could not fail  
   (let [ware (state :ware),
@@ -81,24 +60,38 @@
       (doseq [consumer (shuffle consumers)]
         (send (consumer :worker) notify-msg ware (state :storage) amount))))
   state)                 ;worker itself is immutable, keeping configuration only
-
 (defn notify-msg
-  "A message that can be sent to a factory worker to notify that the provided 'amount' of 'ware's are
-   just put to the 'storage-atom'."
-   ;; 'state' is for agent created in 'factory', see comments in its code for details
-   ;;The implementation should:
-   ;; - try to retrieve some items from the 'storage-atom' if necessary
-   ;; - if the retrieval is not successful, do not forget to handle validation exception correctly 
-   ;; - if the retrieval is successful, put wares into the internal ':buffer'
-   ;; - when there are enough wares of all types according to :bill, a new cycle must be started with given duratin;
-   ;;   after it finished all the wares must be removed from the internal ':buffer' and ':target-storage' must be notified  
-   ;;   with 'supply-msg'
-   ;; - return new agent state with possibly modified ':buffer' in any case!
   [state ware storage-atom amount]
-  ;;;;;;;;;;;;;;;;;;;;;;;
-  ;;TODO implement me
-  ;;;;;;;;;;;;;;;;;;;;;;;
-  nil)
+  (let [bill   (:bill state)
+        buffer (:buffer state)
+        take-from-storage (fn [n]
+                            (if (pos? n)
+                              (try
+                                (let [taken (atom 0)]
+                                  (swap! storage-atom
+                                         (fn [cnt]
+                                           (let [t (min n cnt)]
+                                             (reset! taken t)
+                                             (- cnt t))))
+                                  @taken)
+                                (catch Throwable _ 0))
+                              0))]
+    (let [need        (get bill ware)
+          have        (get buffer ware 0)
+          missing     (max 0 (- (or need 0) have))
+          to-take     (min (or amount 0) missing)
+          taken       (take-from-storage to-take)
+          buffer1     (if (pos? taken)
+                        (update buffer ware (fnil + 0) taken)
+                        buffer)]
+      (loop [buf buffer1]
+        (if (and (seq bill)
+                 (every? (fn [[k req]] (>= (get buf k 0) req)) bill))
+          (let [buf-next (reduce-kv (fn [b k req] (update b k - req)) buf bill)]
+            (Thread/sleep (:duration state))
+            (send (-> state :target-storage :worker) supply-msg (:amount state))
+            (recur buf-next))
+          (assoc state :buffer buf))))))
 
 ;;;
 (def safe-storage (storage "Safe" 1))
