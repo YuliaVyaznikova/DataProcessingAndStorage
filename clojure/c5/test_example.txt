@@ -1,0 +1,2 @@
+clj -M -m c5
+clj -M -e "(require 'c5) (println (c5/run-suite))"
