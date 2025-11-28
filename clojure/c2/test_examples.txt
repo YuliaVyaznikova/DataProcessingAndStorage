@@ -1,0 +1,2 @@
+clj -M -m c2 20
+clj -M -e "(require 'clojure.test 'c2-test) (clojure.test/run-tests 'c2-test)"
