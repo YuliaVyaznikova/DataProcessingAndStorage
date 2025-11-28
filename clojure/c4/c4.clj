@@ -19,14 +19,6 @@
   (let [bill (apply hash-map ware-amounts),
         buffer (reduce-kv (fn [acc k _] (assoc acc k 0)) 
                           {} bill),
-        ;;a state of factory agent:
-        ;;  :amount - a number of items to produce per cycle
-        ;;  :duration - a duration of cylce 
-        ;;  :target-storage - a storage to place products (via supply-msg to its worker)
-        ;;  :bill - a map with ware names as keys and their amounts of values
-        ;;     shows how many wares must be consumed to perform one production cycle
-        ;;  :buffer - a map with similar structure as for :bill that shows how many wares are already collected;
-        ;;     it is the only mutable part. 
         worker-state {:amount amount,
                       :duration duration,
                       :target-storage target-storage,
@@ -44,22 +36,20 @@
 
 (defn supply-msg
   [state amount]
-  (swap! (state :storage) #(+ % amount))      ;update counter, could not fail  
+  (swap! (state :storage) #(+ % amount))  
   (let [ware (state :ware),
         cnt @(state :storage),                
         notify-step (state :notify-step),
         consumers (state :consumers)]
-    ;;logging part, notify-step == 0 means no logging
     (when (and (> notify-step 0)
                (> (int (/ cnt notify-step))
                   (int (/ (- cnt amount) notify-step))))
       (println (.format (new java.text.SimpleDateFormat "hh.mm.ss.SSS") (new java.util.Date)) 
               "|" ware "amount: " cnt))
-    ;;factories notification part
     (when consumers
       (doseq [consumer (shuffle consumers)]
         (send (consumer :worker) notify-msg ware (state :storage) amount))))
-  state)                 ;worker itself is immutable, keeping configuration only
+  state)
 (defn notify-msg
   [state ware storage-atom amount]
   (let [bill   (:bill state)
@@ -93,7 +83,6 @@
             (recur buf-next))
           (assoc state :buffer buf))))))
 
-;;;
 (def safe-storage (storage "Safe" 1))
 (def safe-factory (factory 1 3000 safe-storage "Metal" 3))
 (def cuckoo-clock-storage (storage "Cuckoo-clock" 1))
@@ -107,17 +96,10 @@
 (def ore-storage (storage "Ore" 10 metal-factory gears-factory))
 (def ore-mine (source 2 1000 ore-storage))
 
-;;;runs sources and the whole process as the result
 (defn start []
   (.start ore-mine)
   (.start lumber-mill))
 
-;;;stopes running process
-;;;recomplile the code after it to reset all the process
 (defn stop []
   (.stop ore-mine)
   (.stop lumber-mill))
-
-;;;This could be used to aquire errors from workers
-;;;(agent-error (gears-factory :worker))
-;;;(agent-error (metal-storage :worker))
