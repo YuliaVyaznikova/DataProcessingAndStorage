@@ -1,0 +1,2 @@
+clj -M -m c3 200000 6 2048
+clj -M -e "(require 'clojure.test 'c3-test) (clojure.test/run-tests 'c3-test) (shutdown-agents)"
