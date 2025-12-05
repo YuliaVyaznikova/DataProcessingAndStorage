@@ -13,11 +13,16 @@ public class Person {
     private String spouseId;
     private String spouseName;
 
-    private final Set<String> parentIds = new HashSet<>();
-    private final Set<String> parentNames = new HashSet<>();
+    private final Set<String> fatherIds = new HashSet<>();
+    private final Set<String> fatherNames = new HashSet<>();
+    private final Set<String> motherIds = new HashSet<>();
+    private final Set<String> motherNames = new HashSet<>();
 
-    private final Set<String> childrenIds = new HashSet<>();
-    private final Set<String> siblingIds = new HashSet<>();
+    private final Set<String> sonIds = new HashSet<>();
+    private final Set<String> daughterIds = new HashSet<>();
+
+    private final Set<String> brotherIds = new HashSet<>();
+    private final Set<String> sisterIds = new HashSet<>();
 
     private Integer declaredChildrenNumber;
     private Integer declaredSiblingsNumber;
@@ -70,20 +75,36 @@ public class Person {
         this.spouseName = spouseName;
     }
 
-    public Set<String> getParentIds() {
-        return parentIds;
+    public Set<String> getFatherIds() {
+        return fatherIds;
     }
 
-    public Set<String> getParentNames() {
-        return parentNames;
+    public Set<String> getFatherNames() {
+        return fatherNames;
     }
 
-    public Set<String> getChildrenIds() {
-        return childrenIds;
+    public Set<String> getMotherIds() {
+        return motherIds;
     }
 
-    public Set<String> getSiblingIds() {
-        return siblingIds;
+    public Set<String> getMotherNames() {
+        return motherNames;
+    }
+
+    public Set<String> getSonIds() {
+        return sonIds;
+    }
+
+    public Set<String> getDaughterIds() {
+        return daughterIds;
+    }
+
+    public Set<String> getBrotherIds() {
+        return brotherIds;
+    }
+
+    public Set<String> getSisterIds() {
+        return sisterIds;
     }
 
     public Integer getDeclaredChildrenNumber() {
