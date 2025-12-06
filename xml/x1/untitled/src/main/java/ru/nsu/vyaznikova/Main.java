@@ -17,8 +17,22 @@ public class Main {
 
         try (InputStream in = Files.newInputStream(input)) {
             PeopleStaxParser parser = new PeopleStaxParser();
-            PeopleRepository repo = parser.parse(in);
-            System.out.println("Parsed persons: " + repo.allPersons().size());
+            PeopleRepository parsed = parser.parse(in);
+            System.out.println("Parsed entries: " + parsed.allPersons().size());
+
+            PeopleMerger merger = new PeopleMerger();
+            PeopleRepository merged = merger.merge(parsed);
+            System.out.println("After merge (unique persons): " + merged.allPersons().size());
+
+            ConsistencyChecker.Result res = new ConsistencyChecker().check(merged.allPersons());
+            System.out.println("Checked persons: " + res.personsChecked);
+            System.out.println("Children count mismatches: " + res.childrenMismatches);
+            System.out.println("Siblings count mismatches: " + res.siblingsMismatches);
+
+            Path out = Path.of("build/people-normalized.xml");
+            Files.createDirectories(out.getParent());
+            new PeopleXmlWriter().write(out, merged.allPersons());
+            System.out.println("Normalized XML written to: " + out.toAbsolutePath());
         } catch (IOException e) {
             System.err.println("I/O error: " + e.getMessage());
         } catch (XMLStreamException e) {
