@@ -43,8 +43,21 @@ public class PeopleMerger {
         String f = p.getFirstName();
         String l = p.getLastName();
         if ((f == null || f.isBlank()) && (l == null || l.isBlank())) return null;
-        String base = ((f == null ? "" : f.trim()) + "|" + (l == null ? "" : l.trim())).toLowerCase();
-        return base.replaceAll("\\s+", " ");
+        String base = (normalizeSpaceLower(f) + "|" + normalizeSpaceLower(l));
+
+        List<String> ctx = new ArrayList<>();
+        if (!p.getFatherIds().isEmpty()) ctx.add("F:" + sortedJoin(p.getFatherIds()));
+        else if (!p.getFatherNames().isEmpty()) ctx.add("FNAME:" + sortedJoin(p.getFatherNames()));
+
+        if (!p.getMotherIds().isEmpty()) ctx.add("M:" + sortedJoin(p.getMotherIds()));
+        else if (!p.getMotherNames().isEmpty()) ctx.add("MNAME:" + sortedJoin(p.getMotherNames()));
+
+        if (p.getSpouseId() != null && !p.getSpouseId().isBlank()) ctx.add("S:" + p.getSpouseId().trim());
+        else if (p.getSpouseName() != null && !p.getSpouseName().isBlank()) ctx.add("SNAME:" + normalizeSpaceLower(p.getSpouseName()));
+
+        String ctxKey = String.join("|", ctx);
+        if (!ctxKey.isEmpty()) return base + "|" + ctxKey;
+        return base;
     }
 
     private static Person clonePersonWithId(String id, Person src) {
@@ -89,5 +102,19 @@ public class PeopleMerger {
 
     private static boolean isBlank(String s) {
         return s == null || s.trim().isEmpty();
+    }
+
+    private static String normalizeSpaceLower(String s) {
+        if (s == null) return "";
+        return s.trim().replaceAll("\\s+", " ").toLowerCase();
+    }
+
+    private static String sortedJoin(Collection<String> values) {
+        List<String> list = new ArrayList<>();
+        for (String v : values) {
+            if (v != null && !v.isBlank()) list.add(v.trim());
+        }
+        Collections.sort(list);
+        return String.join(",", list);
     }
 }

@@ -20,16 +20,21 @@ public class Main {
             PeopleRepository parsed = parser.parse(in);
             System.out.println("Parsed entries: " + parsed.allPersons().size());
 
+            RelationshipRefiner refiner = new RelationshipRefiner();
+            refiner.refineSiblingsByGender(parsed);
+
             PeopleMerger merger = new PeopleMerger();
             PeopleRepository merged = merger.merge(parsed);
             System.out.println("After merge (unique persons): " + merged.allPersons().size());
+
+            refiner.refineSiblingsByGender(merged);
 
             ConsistencyChecker.Result res = new ConsistencyChecker().check(merged.allPersons());
             System.out.println("Checked persons: " + res.personsChecked);
             System.out.println("Children count mismatches: " + res.childrenMismatches);
             System.out.println("Siblings count mismatches: " + res.siblingsMismatches);
 
-            Path out = Path.of("build/people-normalized.xml");
+            Path out = Path.of("src/main/resources/people-normalized.xml");
             Files.createDirectories(out.getParent());
             new PeopleXmlWriter().write(out, merged.allPersons());
             System.out.println("Normalized XML written to: " + out.toAbsolutePath());
