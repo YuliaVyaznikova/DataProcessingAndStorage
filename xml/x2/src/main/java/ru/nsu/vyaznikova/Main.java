@@ -14,7 +14,7 @@ public class Main {
                 ? Path.of(args[0])
                 : Path.of("..", "x1", "src", "main", "resources", "people-normalized.xml");
         Path xsd = Path.of("src", "main", "resources", "people-normalized.xsd");
-        Path out = Path.of("build", "people-x2.xml");
+        Path out = Path.of("src", "main", "resources", "people-x2.xml");
 
         XmlValidator validator = new XmlValidator();
         try {

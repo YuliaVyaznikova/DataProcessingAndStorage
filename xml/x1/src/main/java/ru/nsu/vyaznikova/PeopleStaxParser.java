@@ -149,12 +149,20 @@ public class PeopleStaxParser {
                     } else if ("brother".equals(currentElement)) {
                         String val = text.trim();
                         if (!val.isEmpty()) {
-                            current.getBrotherIds().add(synthesizeIdFromName(val));
+                            String sid = synthesizeIdFromName(val);
+                            current.getBrotherIds().add(sid);
+                            // Ensure the referenced sibling person exists in the repository
+                            Person sib = repo.getOrCreateById(sid);
+                            fillNamesIfEmpty(sib, val);
                         }
                     } else if ("sister".equals(currentElement)) {
                         String val = text.trim();
                         if (!val.isEmpty()) {
-                            current.getSisterIds().add(synthesizeIdFromName(val));
+                            String sid = synthesizeIdFromName(val);
+                            current.getSisterIds().add(sid);
+                            // Ensure the referenced sibling person exists in the repository
+                            Person sib = repo.getOrCreateById(sid);
+                            fillNamesIfEmpty(sib, val);
                         }
                     }
                 }
@@ -218,6 +226,28 @@ public class PeopleStaxParser {
         String base = name.trim();
         if (base.isEmpty()) return null;
         return ("NAME_" + base).replaceAll("\\s+", "_");
+    }
+
+    private static void fillNamesIfEmpty(Person p, String fullName) {
+        if (p == null || fullName == null) return;
+        String trimmed = fullName.trim().replaceAll("\\s+", " ");
+        if (trimmed.isEmpty()) return;
+        String first = null;
+        String last = null;
+        String[] parts = trimmed.split(" ");
+        if (parts.length == 1) {
+            // Only one token — treat it as last name if last is empty, otherwise as first name
+            if (isBlank(p.getLastName())) last = parts[0]; else first = parts[0];
+        } else {
+            first = parts[0];
+            last = parts[parts.length - 1];
+        }
+        if (isBlank(p.getFirstName()) && first != null && !first.isBlank()) p.setFirstName(first);
+        if (isBlank(p.getLastName()) && last != null && !last.isBlank()) p.setLastName(last);
+    }
+
+    private static boolean isBlank(String s) {
+        return s == null || s.trim().isEmpty();
     }
 
     private static boolean looksLikeId(String s) {

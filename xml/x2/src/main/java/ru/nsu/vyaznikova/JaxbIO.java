@@ -18,7 +18,8 @@ public class JaxbIO {
     private final JAXBContext ctx;
 
     public JaxbIO() throws JAXBException {
-        this.ctx = JAXBContext.newInstance(People.class.getPackage().getName());
+        // Bind to annotated classes directly to avoid requiring ObjectFactory or jaxb.index
+        this.ctx = JAXBContext.newInstance(People.class);
     }
 
     public People unmarshal(Path xml, Path xsd) throws JAXBException, SAXException, IOException {
