@@ -23,7 +23,7 @@
       </head>
       <body>
         <h1>Person with parents, grand-parent and siblings</h1>
-        <xsl:variable name="candidate" select="person[(parents/father or parents/mother) and (siblings/brother or siblings/sister) and ((parents/father/@ref and key('byId', parents/father/@ref)/parents/*) or (parents/mother/@ref and key('byId', parents/mother/@ref)/parents/*))][1]"/>
+        <xsl:variable name="candidate" select="person[(parents/father and parents/mother) and (siblings/brother and siblings/sister) and ((parents/father/@ref and key('byId', parents/father/@ref)/parents/*) or (parents/mother/@ref and key('byId', parents/mother/@ref)/parents/*))][1]"/>
         <xsl:choose>
           <xsl:when test="$candidate">
             <div class="section">
@@ -60,6 +60,11 @@
             </div>
             <div class="section">
               <h2>Brothers</h2>
+              <p class="muted">Names: 
+                <xsl:call-template name="list-names-ref-only">
+                  <xsl:with-param name="nodes" select="$candidate/siblings/brother"/>
+                </xsl:call-template>
+              </p>
               <div class="grid">
                 <xsl:for-each select="$candidate/siblings/brother">
                   <div class="card">
@@ -72,6 +77,11 @@
             </div>
             <div class="section">
               <h2>Sisters</h2>
+              <p class="muted">Names: 
+                <xsl:call-template name="list-names-ref-only">
+                  <xsl:with-param name="nodes" select="$candidate/siblings/sister"/>
+                </xsl:call-template>
+              </p>
               <div class="grid">
                 <xsl:for-each select="$candidate/siblings/sister">
                   <div class="card">
@@ -93,12 +103,27 @@
 
   <xsl:template name="person-card">
     <xsl:param name="p"/>
+    <xsl:variable name="nameText" select="normalize-space(concat($p/first-name, ' ', $p/last-name))"/>
+    <xsl:variable name="idText" select="$p/@id"/>
     <div>
       <strong>
-        <xsl:call-template name="full-name">
-          <xsl:with-param name="p" select="$p"/>
-        </xsl:call-template>
+        <xsl:choose>
+          <xsl:when test="$nameText != ''">
+            <xsl:value-of select="$nameText"/>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$idText"/>
+          </xsl:otherwise>
+        </xsl:choose>
       </strong>
+      <span class="muted">
+        <xsl:text> (</xsl:text>
+        <xsl:choose>
+          <xsl:when test="$nameText != ''"><xsl:value-of select="$idText"/></xsl:when>
+          <xsl:otherwise><xsl:value-of select="$nameText"/></xsl:otherwise>
+        </xsl:choose>
+        <xsl:text>)</xsl:text>
+      </span>
       <span class="muted">
         <xsl:text> </xsl:text>
         <xsl:value-of select="$p/gender"/>

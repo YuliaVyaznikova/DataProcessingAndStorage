@@ -5,10 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d2d9e09b-d76a-45de-bddd-beea1fffc0a8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/report.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/report.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/report.xsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/report.xsl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
