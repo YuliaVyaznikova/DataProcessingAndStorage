@@ -208,6 +208,14 @@
       <xsl:otherwise>
         <div>
           <strong><xsl:value-of select="$node/@name"/></strong>
+          <span class="muted">
+            <xsl:text> </xsl:text>
+            <xsl:choose>
+              <xsl:when test="name($node)='father'">male</xsl:when>
+              <xsl:when test="name($node)='mother'">female</xsl:when>
+              <xsl:otherwise/>
+            </xsl:choose>
+          </span>
         </div>
       </xsl:otherwise>
     </xsl:choose>
