@@ -23,7 +23,7 @@
       </head>
       <body>
         <h1>Person with parents, grand-parent and siblings</h1>
-        <xsl:variable name="candidate" select="person[parents/(father|mother)][siblings/(brother|sister)][(parents/father/@ref and key('byId', parents/father/@ref)/parents/*) or (parents/mother/@ref and key('byId', parents/mother/@ref)/parents/*)][1]"/>
+        <xsl:variable name="candidate" select="person[(parents/father or parents/mother) and (siblings/brother or siblings/sister) and ((parents/father/@ref and key('byId', parents/father/@ref)/parents/*) or (parents/mother/@ref and key('byId', parents/mother/@ref)/parents/*))][1]"/>
         <xsl:choose>
           <xsl:when test="$candidate">
             <div class="section">
