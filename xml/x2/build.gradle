@@ -20,3 +20,7 @@ implementation 'org.glassfish.jaxb:jaxb-runtime:4.0.5'
 test {
     useJUnitPlatform()
 }
+
+application {
+    mainClass = 'ru.nsu.vyaznikova.Main'
+}
