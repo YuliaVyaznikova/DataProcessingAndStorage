@@ -26,6 +26,8 @@ HAVING COUNT(*) >= 3;
 
 SELECT COUNT(*) AS total_rules FROM bookings.pricing_rules;
 
+SELECT * FROM bookings.pricing_rules LIMIT 5;
+
 SELECT fare_conditions, booking_category, COUNT(*) AS cnt, ROUND(AVG(base_price)::numeric, 2) AS avg_price
 FROM bookings.pricing_rules
 GROUP BY fare_conditions, booking_category
