@@ -1,0 +1,100 @@
+﻿  check_name   | count 
+---------------+-------
+ Total people: | 46140
+(1 row)
+
+        check_name         | count 
+---------------------------+-------
+ People with known gender: |  7578
+(1 row)
+
+ check_name | count 
+------------+-------
+ Males:     |  3766
+ Females:   |  3812
+(2 rows)
+
+      check_name      | count 
+----------------------+-------
+ People with spouses: |  4113
+(1 row)
+
+        check_name         | count 
+---------------------------+-------
+ People with known father: |   280
+(1 row)
+
+        check_name         | count 
+---------------------------+-------
+ People with known mother: |   259
+(1 row)
+
+       check_name        | errors 
+-------------------------+--------
+ Errors: father not male |      0
+(1 row)
+
+        check_name         | errors 
+---------------------------+--------
+ Errors: mother not female |      0
+(1 row)
+
+         check_name          | errors 
+-----------------------------+--------
+ Errors: spouses same gender |      0
+(1 row)
+
+          check_name           | errors 
+-------------------------------+--------
+ Errors: self-reference spouse |      0
+ Errors: self-reference father |      0
+ Errors: self-reference mother |      0
+(3 rows)
+
+      info      
+----------------
+ Sample people:
+(1 row)
+
+          id           | first_name | last_name  | gender | spouse_id | father_id | mother_id 
+-----------------------+------------+------------+--------+-----------+-----------+-----------
+ NAME_Alysa_Plan       | Alysa      | Plan       |        |           |           | 
+ P404438               |            |            |        |           |           | 
+ NAME_Arden_Cadice     | Arden      | Cadice     |        |           |           | 
+ P385130               |            | Mittendorf |        |           |           | 
+ NAME_Deann_Dedecker   | Deann      | Dedecker   |        |           |           | 
+ P394580               |            |            | F      |           |           | 
+ NAME_Millicent_Algire | Millicent  | Algire     |        |           |           | 
+ P407000               |            |            |        |           |           | 
+ NAME_Francesco_Skrine | Francesco  | Skrine     |        |           |           | 
+ NAME__Rookwood        |            | Rookwood   | F      |           |           | 
+(10 rows)
+
+       info       
+------------------
+ Sample siblings:
+(1 row)
+
+psql : psql:C:/IMPORTANT/NSU/3/DataProcessingAndStorage/DataProcessingAndStorage/db/d3/verify.sql:45: ╨Ю╨и╨Ш╨С╨Ъ╨Р:  ╨╛╤В╨╜╨╛╤И╨╡╨╜╨╕╨╡ "main.sibling_view" ╨╜╨
+╡ ╤Б╤Г╤Й╨╡╤Б╤В╨▓╤Г╨╡╤В
+строка:1 знак:29
++ ... 'N-lx0802'; psql -U postgres -d family -f C:\IMPORTANT\NSU\3\DataProc ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (psql:C:/IMPORTA...Й╨╡╤Б╤В╨▓╤Г╨╡╤В:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+LINE 1: SELECT * FROM main.sibling_view LIMIT 10;
+                      ^
+psql:C:/IMPORTANT/NSU/3/DataProcessingAndStorage/DataProcessingAndStorage/db/d3/verify.sql:47: ╨Ю╨и╨Ш╨С╨Ъ╨Р:  ╨╛╤В╨╜╨╛╤И╨╡╨╜╨╕╨╡ "main.sibling_view" ╨╜╨╡ ╤Б╤Г╤
+Й╨╡╤Б╤В╨▓╤Г╨╡╤В
+LINE 1: ...ing pairs:' AS check_name, COUNT(*) AS count FROM main.sibli...
+                                                             ^
+ summary 
+---------
+ Summary
+(1 row)
+
+psql:C:/IMPORTANT/NSU/3/DataProcessingAndStorage/DataProcessingAndStorage/db/d3/verify.sql:56: ╨Ю╨и╨Ш╨С╨Ъ╨Р:  ╨╛╤В╨╜╨╛╤И╨╡╨╜╨╕╨╡ "main.sibling_view" ╨╜╨╡ ╤Б╤Г╤
+Й╨╡╤Б╤В╨▓╤Г╨╡╤В
+LINE 7:     (SELECT COUNT(*) FROM main.sibling_view) AS sibling_pair...
+                                  ^

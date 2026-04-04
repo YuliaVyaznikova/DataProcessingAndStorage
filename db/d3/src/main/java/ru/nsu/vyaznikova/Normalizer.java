@@ -46,6 +46,25 @@ public class Normalizer {
         
         System.out.println("Updating mother references...");
         updateReferences("mother_id");
+        
+        System.out.println("Creating sibling_view...");
+        createSiblingView();
+    }
+    
+    private void createSiblingView() throws SQLException {
+        String createView = """
+            CREATE OR REPLACE VIEW main.sibling_view AS
+            SELECT 
+                p1.id AS person_id,
+                p2.id AS sibling_id
+            FROM main.person p1
+            JOIN main.person p2 ON (
+                (p1.father_id = p2.father_id AND p1.father_id IS NOT NULL)
+                OR (p1.mother_id = p2.mother_id AND p1.mother_id IS NOT NULL)
+            )
+            WHERE p1.id != p2.id
+        """;
+        db.execute(createView);
     }
 
     private void updateReferences(String column) throws SQLException {
