@@ -28,6 +28,12 @@ SELECT COUNT(*) AS total_rules FROM bookings.pricing_rules;
 
 SELECT * FROM bookings.pricing_rules LIMIT 5;
 
+SELECT route_no, fare_conditions, booking_category, base_price, min_price, max_price, sales_count
+FROM bookings.pricing_rules
+WHERE min_price <> max_price
+ORDER BY (max_price - min_price) DESC
+LIMIT 5;
+
 SELECT fare_conditions, booking_category, COUNT(*) AS cnt, ROUND(AVG(base_price)::numeric, 2) AS avg_price
 FROM bookings.pricing_rules
 GROUP BY fare_conditions, booking_category
