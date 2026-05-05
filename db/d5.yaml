@@ -1,0 +1,421 @@
+openapi: 3.0.3
+info:
+  title: Flights API
+  version: 1.0.0
+  description: RESTful API for flight booking system
+
+servers:
+  - url: /api/v1
+
+paths:
+  /cities:
+    get:
+      summary: list all available cities
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/City'
+
+  /airports:
+    get:
+      summary: list all available airports
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Airport'
+
+  /cities/airports:
+    get:
+      summary: list airports within a city
+      parameters:
+        - name: city
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: country
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Airport'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /airports/{airportCode}/schedule/inbound:
+    get:
+      summary: list inbound schedule for an airport
+      parameters:
+        - name: airportCode
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^[A-Z]{3}$'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/InboundFlight'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /airports/{airportCode}/schedule/outbound:
+    get:
+      summary: list outbound schedule for an airport
+      parameters:
+        - name: airportCode
+          in: path
+          required: true
+          schema:
+            type: string
+            pattern: '^[A-Z]{3}$'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OutboundFlight'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /routes/search:
+    get:
+      summary: search routes connecting two points
+      parameters:
+        - name: fromAirportCode
+          in: query
+          description: origin airport code (e.g., OVB)
+          schema:
+            type: string
+        - name: fromCity
+          in: query
+          description: origin city name
+          schema:
+            type: string
+        - name: fromCountry
+          in: query
+          description: origin country (for city disambiguation)
+          schema:
+            type: string
+        - name: toAirportCode
+          in: query
+          description: destination airport code
+          schema:
+            type: string
+        - name: toCity
+          in: query
+          description: destination city name
+          schema:
+            type: string
+        - name: toCountry
+          in: query
+          description: destination country
+          schema:
+            type: string
+        - name: departureDate
+          in: query
+          required: true
+          description: departure date (YYYY-MM-DD)
+          schema:
+            type: string
+            format: date
+        - name: bookingClass
+          in: query
+          description: booking class
+          schema:
+            type: string
+            enum: [Economy, Comfort, Business]
+        - name: maxConnections
+          in: query
+          description: maximum connections (0=direct, -1=unbound)
+          schema:
+            type: integer
+            enum: [-1, 0, 1, 2, 3]
+            default: -1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RouteSearchResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /bookings:
+    post:
+      summary: create a booking for a selected route
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookingRequest'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BookingResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /bookings/{bookRef}/check-in:
+    patch:
+      summary: online check-in for a flight
+      parameters:
+        - name: bookRef
+          in: path
+          required: true
+          schema:
+            type: string
+          description: booking reference code
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckInRequest'
+      responses:
+        '200':
+          description: Check-in successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoardingPass'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+
+components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Conflict:
+      description: Resource conflict (e.g., seat already taken)
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+
+  schemas:
+    City:
+      type: object
+      properties:
+        city:
+          type: string
+          example: Novosibirsk
+        country:
+          type: string
+          example: Russia
+
+    Airport:
+      type: object
+      properties:
+        airportCode:
+          type: string
+          example: OVB
+        airportName:
+          type: string
+          example: Tolmachevo
+        city:
+          type: string
+          example: Novosibirsk
+        country:
+          type: string
+          example: Russia
+
+    InboundFlight:
+      type: object
+      properties:
+        flightNo:
+          type: string
+          example: PG0001
+        daysOfWeek:
+          type: array
+          items:
+            type: integer
+          example: [1, 2, 3, 4, 5]
+        arrivalTime:
+          type: string
+          example: "10:30:00"
+        origin:
+          $ref: '#/components/schemas/Airport'
+
+    OutboundFlight:
+      type: object
+      properties:
+        flightNo:
+          type: string
+          example: PG0002
+        daysOfWeek:
+          type: array
+          items:
+            type: integer
+          example: [1, 2, 3, 4, 5]
+        departureTime:
+          type: string
+          example: "08:00:00"
+        destination:
+          $ref: '#/components/schemas/Airport'
+
+    Segment:
+      type: object
+      properties:
+        flightId:
+          type: integer
+          example: 12345
+        flightNo:
+          type: string
+          example: PG0001
+        departureAirport:
+          type: string
+          example: OVB
+        arrivalAirport:
+          type: string
+          example: SVO
+        departureTime:
+          type: string
+          format: date-time
+        arrivalTime:
+          type: string
+          format: date-time
+        price:
+          type: number
+          description: price from pricing_rules (D4)
+          example: 6500
+
+    RouteSearchResult:
+      type: object
+      properties:
+        connectionsCount:
+          type: integer
+          example: 0
+        segments:
+          type: array
+          items:
+            $ref: '#/components/schemas/Segment'
+        totalPrice:
+          type: number
+          example: 6500
+
+    BookingRequest:
+      type: object
+      required:
+        - passengerId
+        - passengerName
+        - flightIds
+        - bookingClass
+      properties:
+        passengerId:
+          type: string
+          description: passenger document number
+          example: "1234567890"
+        passengerName:
+          type: string
+          example: "Ivan Petrov"
+        flightIds:
+          type: array
+          items:
+            type: integer
+          description: list of flight IDs for the route
+          example: [12345]
+        bookingClass:
+          type: string
+          enum: [Economy, Comfort, Business]
+
+    BookingResponse:
+      type: object
+      properties:
+        bookRef:
+          type: string
+          example: ABC123
+        ticketNo:
+          type: string
+          example: "0005432101234"
+        totalAmount:
+          type: number
+          example: 6500
+
+    CheckInRequest:
+      type: object
+      required:
+        - ticketNo
+        - flightId
+      properties:
+        ticketNo:
+          type: string
+          example: "0005432101234"
+        flightId:
+          type: integer
+          example: 12345
+        seatPreference:
+          type: string
+          description: preferred seat number (e.g., 12A). If not specified, seat will be auto-assigned.
+          example: "12A"
+
+    BoardingPass:
+      type: object
+      properties:
+        ticketNo:
+          type: string
+        flightId:
+          type: integer
+        seatNo:
+          type: string
+          example: "12A"
+        boardingNo:
+          type: integer
+          description: boarding sequence number
+        boardingTime:
+          type: string
+          format: date-time
+
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "Resource not found"
