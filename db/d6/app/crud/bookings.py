@@ -39,6 +39,34 @@ async def _unique_ticket_no(session: AsyncSession) -> str:
     raise RuntimeError("Failed to generate unique ticket_no")
 
 
+async def _check_seat_availability(session: AsyncSession, flight_id: int, fare_conditions: str) -> None:
+    sql = text("""
+        SELECT
+            (SELECT COUNT(*)
+             FROM bookings.seats s
+             JOIN bookings.routes r ON r.airplane_code = s.airplane_code
+             JOIN bookings.flights f ON f.route_no = r.route_no
+             WHERE f.flight_id = :flight_id
+               AND s.fare_conditions = :fare_conditions
+            ) AS total_seats,
+            (SELECT COUNT(*)
+             FROM bookings.segments sg
+             WHERE sg.flight_id = :flight_id
+               AND sg.fare_conditions = :fare_conditions
+            ) AS sold_segments
+    """)
+    row = (await session.execute(sql, {
+        "flight_id": flight_id,
+        "fare_conditions": fare_conditions,
+    })).mappings().one()
+
+    total = int(row["total_seats"])
+    sold = int(row["sold_segments"])
+
+    if sold >= total:
+        raise ValueError(f"No available seats for flight {flight_id} in class {fare_conditions}")
+
+
 async def create_booking(
     session: AsyncSession,
     passenger_id: str,
@@ -46,6 +74,14 @@ async def create_booking(
     flight_ids: list[int],
     booking_class: str,
 ) -> dict:
+    if len(flight_ids) != len(set(flight_ids)):
+        raise ValueError("Duplicate flight_ids in booking request")
+
+    await session.execute(text("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE"))
+
+    for flight_id in flight_ids:
+        await _check_seat_availability(session, flight_id, booking_class)
+
     book_ref = await _unique_book_ref(session)
     ticket_no = await _unique_ticket_no(session)
 
@@ -54,6 +90,7 @@ async def create_booking(
     total_amount = 0.0
     segments_data = []
 
+    prev_airport = None
     for flight_id in flight_ids:
         flight_sql = text("""
             SELECT f.route_no, f.scheduled_departure, f.scheduled_arrival,
@@ -67,6 +104,14 @@ async def create_booking(
 
         if not flight_row:
             raise ValueError(f"Flight {flight_id} not found or not valid")
+
+        if prev_airport is not None and flight_row["departure_airport"] != prev_airport:
+            raise ValueError(
+                f"Flight {flight_id} departure airport "
+                f"({flight_row['departure_airport']}) does not match "
+                f"previous flight's arrival airport ({prev_airport})"
+            )
+        prev_airport = flight_row["arrival_airport"]
 
         price_sql = text("""
             SELECT base_price

@@ -27,3 +27,12 @@ CREATE INDEX IF NOT EXISTS idx_tickets_book_ref
 
 CREATE INDEX IF NOT EXISTS idx_pricing_rules_lookup
     ON bookings.pricing_rules (route_no, fare_conditions, departure_month, day_of_week);
+
+CREATE INDEX IF NOT EXISTS idx_airports_data_city_trgm
+    ON bookings.airports_data USING GIN ((city->>'en') gin_trgm_ops);
+
+CREATE INDEX IF NOT EXISTS idx_airports_data_name_trgm
+    ON bookings.airports_data USING GIN ((airport_name->>'en') gin_trgm_ops);
+
+CREATE INDEX IF NOT EXISTS idx_segments_flight_fare
+    ON bookings.segments (flight_id, fare_conditions);

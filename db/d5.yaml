@@ -11,6 +11,13 @@ paths:
   /cities:
     get:
       summary: list all available cities
+      parameters:
+        - name: q
+          in: query
+          required: false
+          description: substring search for city name
+          schema:
+            type: string
       responses:
         '200':
           description: OK
@@ -24,6 +31,13 @@ paths:
   /airports:
     get:
       summary: list all available airports
+      parameters:
+        - name: q
+          in: query
+          required: false
+          description: substring search for airport name, city or code
+          schema:
+            type: string
       responses:
         '200':
           description: OK

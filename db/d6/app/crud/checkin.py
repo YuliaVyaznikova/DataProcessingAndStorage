@@ -11,6 +11,8 @@ async def check_in(
     seat_preference: str | None = None,
     book_ref: str | None = None,
 ) -> dict | str | None:
+    await session.execute(text("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE"))
+
     segment_sql = text("""
         SELECT s.fare_conditions
         FROM bookings.segments s
@@ -60,6 +62,7 @@ async def check_in(
 
     fare = segment["fare_conditions"]
     aircraft = flight["airplane_code"]
+
     seat_no = None
 
     if seat_preference:
@@ -75,6 +78,8 @@ async def check_in(
                   WHERE bp.flight_id = :flight_id
                     AND bp.seat_no = s.seat_no
               )
+            LIMIT 1
+            FOR UPDATE OF s
         """)
         seat_no = (await session.execute(pref_sql, {
             "airplane_code": aircraft,
@@ -97,6 +102,7 @@ async def check_in(
               )
             ORDER BY s.seat_no
             LIMIT 1
+            FOR UPDATE OF s
         """)
         seat_no = (await session.execute(seat_sql, {
             "airplane_code": aircraft,
