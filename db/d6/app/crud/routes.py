@@ -87,8 +87,8 @@ async def search_routes(
         params["departure_airport"] = from_airport
 
     if from_city is not None:
-        start_conditions.append("dep_airport.city->>'en' = :departure_city")
-        params["departure_city"] = from_city
+        start_conditions.append("dep_airport.city->>'en' ILIKE :departure_city")
+        params["departure_city"] = f"%{from_city}%"
 
     if from_country is not None:
         start_conditions.append("dep_airport.country->>'en' = :departure_country")
@@ -105,8 +105,8 @@ async def search_routes(
         params["arrival_airport"] = to_airport
 
     if to_city is not None:
-        finish_conditions.append("arrival_city = :arrival_city")
-        params["arrival_city"] = to_city
+        finish_conditions.append("arrival_city ILIKE :arrival_city")
+        params["arrival_city"] = f"%{to_city}%"
 
     if to_country is not None:
         finish_conditions.append("arrival_country = :arrival_country")

@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.exc import DBAPIError
 
 from app.db import get_session
 from app.schemas import BookingRequest, BookingResponse
@@ -23,5 +24,9 @@ async def create_booking_endpoint(
         )
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
+    except DBAPIError as e:
+        if "could not serialize access" in str(e) or "40001" in str(e):
+            raise HTTPException(status_code=409, detail="Concurrent booking conflict, please retry")
+        raise HTTPException(status_code=500, detail=str(e))
 
     return result

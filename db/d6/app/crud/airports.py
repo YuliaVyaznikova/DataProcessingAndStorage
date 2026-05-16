@@ -1,54 +1,69 @@
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
-SQL_CITIES = text("""
-WITH params AS (
-    SELECT (SELECT MAX(actual_departure) FROM bookings.flights) AS now_ts
-)
-SELECT DISTINCT
-    city->>'en' AS city,
-    country->>'en' AS country
-FROM bookings.airports_data
-WHERE airport_code IN (
-    SELECT departure_airport
-    FROM bookings.routes
-    WHERE (SELECT now_ts FROM params) <@ validity
-)
-OR airport_code IN (
-    SELECT arrival_airport
-    FROM bookings.routes
-    WHERE (SELECT now_ts FROM params) <@ validity
-)
-ORDER BY country, city;
-""")
 
-SQL_AIRPORTS = text("""
-WITH params AS (
-    SELECT (SELECT MAX(actual_departure) FROM bookings.flights) AS now_ts
-)
-SELECT 
-    airport_code,
-    airport_name->>'en' AS airport,
-    city->>'en' AS city,
-    country->>'en' AS country
-FROM bookings.airports_data
-WHERE airport_code IN (
-    SELECT departure_airport FROM bookings.routes WHERE (SELECT now_ts FROM params) <@ validity
-)
-OR airport_code IN (
-    SELECT arrival_airport FROM bookings.routes WHERE (SELECT now_ts FROM params) <@ validity
-)
-ORDER BY country, city, airport;
-""")
+def _build_cities_sql(search: str | None) -> tuple[str, dict]:
+    base = """
+    WITH params AS (
+        SELECT (SELECT MAX(actual_departure) FROM bookings.flights) AS now_ts
+    )
+    SELECT DISTINCT
+        city->>'en' AS city,
+        country->>'en' AS country
+    FROM bookings.airports_data
+    WHERE (airport_code IN (
+        SELECT departure_airport
+        FROM bookings.routes
+        WHERE (SELECT now_ts FROM params) <@ validity
+    )
+    OR airport_code IN (
+        SELECT arrival_airport
+        FROM bookings.routes
+        WHERE (SELECT now_ts FROM params) <@ validity
+    ))
+    """
+    params: dict[str, str] = {}
+    if search:
+        base += " AND city->>'en' ILIKE :search"
+        params["search"] = f"%{search}%"
+    base += " ORDER BY country, city;"
+    return base, params
+
+
+def _build_airports_sql(search: str | None) -> tuple[str, dict]:
+    base = """
+    WITH params AS (
+        SELECT (SELECT MAX(actual_departure) FROM bookings.flights) AS now_ts
+    )
+    SELECT
+        airport_code,
+        airport_name->>'en' AS airport,
+        city->>'en' AS city,
+        country->>'en' AS country
+    FROM bookings.airports_data
+    WHERE (airport_code IN (
+        SELECT departure_airport FROM bookings.routes WHERE (SELECT now_ts FROM params) <@ validity
+    )
+    OR airport_code IN (
+        SELECT arrival_airport FROM bookings.routes WHERE (SELECT now_ts FROM params) <@ validity
+    ))
+    """
+    params: dict[str, str] = {}
+    if search:
+        base += " AND (city->>'en' ILIKE :search OR airport_name->>'en' ILIKE :search OR airport_code ILIKE :search)"
+        params["search"] = f"%{search}%"
+    base += " ORDER BY country, city, airport;"
+    return base, params
+
 
 SQL_CITY_AIRPORTS_BASE = """
-SELECT 
+SELECT
     airport_code,
     airport_name->>'en' AS airport,
     city->>'en' AS city,
     country->>'en' AS country
 FROM bookings.airports_data
-WHERE city->>'en' = :city
+WHERE city->>'en' ILIKE :city
 """
 
 SQL_CITY_AIRPORTS_ORDER = " ORDER BY country, city, airport;"
@@ -57,7 +72,7 @@ SQL_INBOUND = text("""
 WITH params AS (
     SELECT (SELECT MAX(actual_departure) FROM bookings.flights) AS now_ts
 )
-SELECT 
+SELECT
     r.route_no,
     r.days_of_week,
     (((DATE '2000-01-15'::timestamp + r.scheduled_time)
@@ -80,7 +95,7 @@ SQL_OUTBOUND = text("""
 WITH params AS (
     SELECT (SELECT MAX(actual_departure) FROM bookings.flights) AS now_ts
 )
-SELECT 
+SELECT
     r.route_no,
     r.days_of_week,
     ((DATE '2000-01-15'::timestamp + r.scheduled_time)
@@ -99,13 +114,15 @@ ORDER BY r.route_no;
 """)
 
 
-async def list_cities(session: AsyncSession):
-    rows = (await session.execute(SQL_CITIES)).mappings().all()
+async def list_cities(session: AsyncSession, search: str | None = None):
+    sql, params = _build_cities_sql(search)
+    rows = (await session.execute(text(sql), params)).mappings().all()
     return [{"city": r["city"], "country": r["country"]} for r in rows]
 
 
-async def list_airports(session: AsyncSession):
-    rows = (await session.execute(SQL_AIRPORTS)).mappings().all()
+async def list_airports(session: AsyncSession, search: str | None = None):
+    sql, params = _build_airports_sql(search)
+    rows = (await session.execute(text(sql), params)).mappings().all()
     return [
         {
             "airportCode": r["airport_code"],

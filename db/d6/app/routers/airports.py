@@ -15,13 +15,19 @@ router = APIRouter(tags=["airports"])
 
 
 @router.get("/cities", response_model=list[CityOut], summary="list all available cities")
-async def get_cities(session: AsyncSession = Depends(get_session)):
-    return await list_cities(session)
+async def get_cities(
+    q: str | None = Query(None, description="substring search for city name"),
+    session: AsyncSession = Depends(get_session),
+):
+    return await list_cities(session, search=q)
 
 
 @router.get("/airports", response_model=list[AirportOut], summary="list all available airports")
-async def get_airports(session: AsyncSession = Depends(get_session)):
-    return await list_airports(session)
+async def get_airports(
+    q: str | None = Query(None, description="substring search for airport name, city or code"),
+    session: AsyncSession = Depends(get_session),
+):
+    return await list_airports(session, search=q)
 
 
 @router.get("/cities/airports", response_model=list[AirportOut], summary="list airports within a city")
