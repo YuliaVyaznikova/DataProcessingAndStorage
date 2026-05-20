@@ -6,10 +6,13 @@ import jakarta.xml.bind.annotation.XmlAttribute;
 import jakarta.xml.bind.annotation.XmlIDREF;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-public class ChildRef {
-    @XmlAttribute(name = "ref", required = true)
+public class SiblingRefOrName {
+    @XmlAttribute(name = "ref")
     @XmlIDREF
     private Object ref;
+
+    @XmlAttribute(name = "name")
+    private String name;
 
     public Object getRef() {
         return ref;
@@ -17,5 +20,13 @@ public class ChildRef {
 
     public void setRef(Object ref) {
         this.ref = ref;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

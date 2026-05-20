@@ -9,24 +9,24 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Children {
     @XmlElement(name = "son")
-    private List<ChildRef> son = new ArrayList<>();
+    private List<ChildRefOrName> son = new ArrayList<>();
 
     @XmlElement(name = "daughter")
-    private List<ChildRef> daughter = new ArrayList<>();
+    private List<ChildRefOrName> daughter = new ArrayList<>();
 
-    public List<ChildRef> getSon() {
+    public List<ChildRefOrName> getSon() {
         return son;
     }
 
-    public void setSon(List<ChildRef> son) {
+    public void setSon(List<ChildRefOrName> son) {
         this.son = son;
     }
 
-    public List<ChildRef> getDaughter() {
+    public List<ChildRefOrName> getDaughter() {
         return daughter;
     }
 
-    public void setDaughter(List<ChildRef> daughter) {
+    public void setDaughter(List<ChildRefOrName> daughter) {
         this.daughter = daughter;
     }
 }
