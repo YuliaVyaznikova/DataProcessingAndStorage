@@ -27,13 +27,13 @@ public class StreamingLoader {
 
         File file = new File(xmlFile);
         long fileSize = file.length();
-        
+
         List<Segment> segments = splitFileIntoSegments(file, fileSize, threads);
         System.out.println("Split into " + segments.size() + " segments");
-        
+
         ExecutorService executor = Executors.newFixedThreadPool(threads);
         List<Future<?>> futures = new ArrayList<>();
-        
+
         for (Segment segment : segments) {
             futures.add(executor.submit(() -> {
                 try {
@@ -43,30 +43,30 @@ public class StreamingLoader {
                 }
             }));
         }
-        
+
         for (Future<?> f : futures) {
             f.get();
         }
-        
+
         executor.shutdown();
         executor.awaitTermination(1, TimeUnit.HOURS);
-        
+
         System.out.println("Streaming phase completed");
     }
-    
+
     private List<Segment> splitFileIntoSegments(File file, long fileSize, int n) throws IOException {
         List<Segment> segments = new ArrayList<>();
-        
+
         if (n <= 1) {
             segments.add(new Segment(0, fileSize));
             return segments;
         }
-        
+
         long segmentSize = fileSize / n;
         long[] boundaries = new long[n + 1];
         boundaries[0] = 0;
         boundaries[n] = fileSize;
-        
+
         try (RandomAccessFile raf = new RandomAccessFile(file, "r")) {
             for (int i = 1; i < n; i++) {
                 long approx = i * segmentSize;
@@ -74,75 +74,88 @@ public class StreamingLoader {
                 boundaries[i] = boundary;
             }
         }
-        
+
         for (int i = 0; i < n; i++) {
             segments.add(new Segment(boundaries[i], boundaries[i + 1]));
         }
-        
+
         return segments;
     }
-    
+
     private long findPersonBoundary(RandomAccessFile raf, long approx) throws IOException {
         raf.seek(approx);
-        
+
         byte[] buffer = new byte[8192];
         int read = raf.read(buffer);
         if (read <= 0) return approx;
-        
+
         String chunk = new String(buffer, 0, read, StandardCharsets.UTF_8);
-        
+
         int personStart = chunk.indexOf("<person");
         if (personStart >= 0) {
             return approx + personStart;
         }
-        
+
         int personEnd = chunk.indexOf("</person>");
         if (personEnd >= 0) {
             return approx + personEnd + 9;
         }
-        
+
         return approx;
     }
-    
+
     private void parseSegment(File file, Segment segment) throws Exception {
         Connection conn = db.getConnection();
-        String sql = """
-            INSERT INTO temp.person (id, first_name, last_name, gender, spouse_id, father_id, mother_id)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+
+        String personSql = """
+            INSERT INTO temp.person (id, first_name, last_name, gender, spouse_id)
+            VALUES (?, ?, ?, ?, ?)
             ON CONFLICT (id) DO UPDATE SET
                 first_name = COALESCE(EXCLUDED.first_name, temp.person.first_name),
                 last_name = COALESCE(EXCLUDED.last_name, temp.person.last_name),
                 gender = COALESCE(EXCLUDED.gender, temp.person.gender),
-                spouse_id = COALESCE(EXCLUDED.spouse_id, temp.person.spouse_id),
-                father_id = COALESCE(EXCLUDED.father_id, temp.person.father_id),
-                mother_id = COALESCE(EXCLUDED.mother_id, temp.person.mother_id)
+                spouse_id = COALESCE(EXCLUDED.spouse_id, temp.person.spouse_id)
         """;
-        
-        try (PreparedStatement ps = conn.prepareStatement(sql);
+
+        String parentSql = """
+            INSERT INTO temp.parent_link (child_id, parent_id, parent_role)
+            VALUES (?, ?, ?)
+            ON CONFLICT (child_id, parent_id) DO NOTHING
+        """;
+
+        String siblingSql = """
+            INSERT INTO temp.sibling_link (person_id, sibling_id, sibling_type)
+            VALUES (?, ?, ?)
+            ON CONFLICT (person_id, sibling_id) DO NOTHING
+        """;
+
+        try (PreparedStatement psPerson = conn.prepareStatement(personSql);
+             PreparedStatement psParent = conn.prepareStatement(parentSql);
+             PreparedStatement psSibling = conn.prepareStatement(siblingSql);
              SegmentInputStream sis = new SegmentInputStream(file, segment)) {
-            
+
             SAXParserFactory factory = SAXParserFactory.newInstance();
             SAXParser parser = factory.newSAXParser();
-            SegmentHandler handler = new SegmentHandler(ps, conn);
-            
+            SegmentHandler handler = new SegmentHandler(psPerson, psParent, psSibling, conn);
+
             parser.parse(sis, handler);
         }
     }
-    
+
     private static class Segment {
         final long start;
         final long end;
-        
+
         Segment(long start, long end) {
             this.start = start;
             this.end = end;
         }
-        
+
         long size() {
             return end - start;
         }
     }
-    
+
     private static class SegmentInputStream extends InputStream {
         private final RandomAccessFile raf;
         private final long end;
@@ -154,13 +167,7 @@ public class StreamingLoader {
         private int headerPos = 0;
         private int footerPos = 0;
         private boolean skipXmlDecl;
-        private byte[] buffer = new byte[8192];
-        private int bufPos = 0;
-        private int bufLen = 0;
-        private boolean inSkipMode = false;
-        private byte[] skipPattern;
-        private int skipPos = 0;
-        
+
         SegmentInputStream(File file, Segment segment) throws IOException {
             this.raf = new RandomAccessFile(file, "r");
             this.raf.seek(segment.start);
@@ -168,14 +175,14 @@ public class StreamingLoader {
             this.end = segment.end;
             this.skipXmlDecl = (segment.start == 0);
         }
-        
+
         private int readRaw() throws IOException {
             if (position >= end) return -1;
             int b = raf.read();
             if (b >= 0) position++;
             return b;
         }
-        
+
         private boolean skipTag(String tag) throws IOException {
             byte[] tagBytes = tag.getBytes(StandardCharsets.UTF_8);
             for (int i = 0; i < tagBytes.length; i++) {
@@ -186,7 +193,7 @@ public class StreamingLoader {
             }
             return true;
         }
-        
+
         @Override
         public int read() throws IOException {
             if (skipXmlDecl) {
@@ -195,14 +202,14 @@ public class StreamingLoader {
                     return read();
                 }
             }
-            
+
             if (!headerSent) {
                 if (headerPos < header.length) {
                     return header[headerPos++] & 0xFF;
                 }
                 headerSent = true;
             }
-            
+
             if (position < end) {
                 int b = readRaw();
                 if (b == '<') {
@@ -222,21 +229,21 @@ public class StreamingLoader {
                 }
                 return b;
             }
-            
+
             if (!footerSent) {
                 if (footerPos < footer.length) {
                     return footer[footerPos++] & 0xFF;
                 }
                 footerSent = true;
             }
-            
+
             return -1;
         }
-        
+
         @Override
         public int read(byte[] b, int off, int len) throws IOException {
             int totalRead = 0;
-            
+
             while (totalRead < len) {
                 int next = read();
                 if (next < 0) {
@@ -245,109 +252,259 @@ public class StreamingLoader {
                 b[off + totalRead] = (byte) next;
                 totalRead++;
             }
-            
+
             return totalRead;
         }
-        
+
         @Override
         public void close() throws IOException {
             raf.close();
         }
     }
-    
+
     private static class SegmentHandler extends DefaultHandler {
-        private final PreparedStatement ps;
+        private final PreparedStatement psPerson;
+        private final PreparedStatement psParent;
+        private final PreparedStatement psSibling;
         private final Connection conn;
-        private Person currentPerson;
+        private PersonData currentPerson;
         private StringBuilder text;
-        private int count = 0;
-        
-        SegmentHandler(PreparedStatement ps, Connection conn) {
-            this.ps = ps;
+        private boolean inParents;
+        private boolean inChildren;
+        private boolean inSiblings;
+        private int personCount = 0;
+
+        SegmentHandler(PreparedStatement psPerson, PreparedStatement psParent,
+                       PreparedStatement psSibling, Connection conn) {
+            this.psPerson = psPerson;
+            this.psParent = psParent;
+            this.psSibling = psSibling;
             this.conn = conn;
         }
-        
+
         @Override
         public void startElement(String uri, String localName, String qName, Attributes attrs) {
             text = new StringBuilder();
-            
-            if ("person".equals(qName)) {
-                currentPerson = new Person();
-                currentPerson.id = attrs.getValue("id");
-            } else if (currentPerson != null) {
-                String ref = attrs.getValue("ref");
-                switch (qName) {
-                    case "spouse" -> currentPerson.spouseId = ref;
-                    case "father" -> currentPerson.fatherId = ref;
-                    case "mother" -> currentPerson.motherId = ref;
+
+            switch (qName) {
+                case "person" -> {
+                    currentPerson = new PersonData();
+                    currentPerson.id = attrs.getValue("id");
+                    inParents = false;
+                    inChildren = false;
+                    inSiblings = false;
+                }
+                case "parents" -> {
+                    inParents = true;
+                }
+                case "children" -> {
+                    inChildren = true;
+                }
+                case "siblings" -> {
+                    inSiblings = true;
+                }
+                case "spouse" -> {
+                    if (currentPerson != null) {
+                        currentPerson.spouseId = attrs.getValue("ref");
+                    }
+                }
+                case "father" -> {
+                    if (currentPerson != null) {
+                        if (inParents) {
+                            String ref = attrs.getValue("ref");
+                            if (ref != null) {
+                                try {
+                                    psParent.setString(1, currentPerson.id);
+                                    psParent.setString(2, ref);
+                                    psParent.setString(3, "F");
+                                    psParent.executeUpdate();
+                                } catch (SQLException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }
+                        }
+                    }
+                }
+                case "mother" -> {
+                    if (currentPerson != null) {
+                        if (inParents) {
+                            String ref = attrs.getValue("ref");
+                            if (ref != null) {
+                                try {
+                                    psParent.setString(1, currentPerson.id);
+                                    psParent.setString(2, ref);
+                                    psParent.setString(3, "M");
+                                    psParent.executeUpdate();
+                                } catch (SQLException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }
+                        }
+                    }
+                }
+                case "son" -> {
+                    if (currentPerson != null) {
+                        if (inChildren) {
+                            String ref = attrs.getValue("ref");
+                            if (ref != null) {
+                                try {
+                                    String role = "F";
+                                    String gender = currentPerson.gender;
+                                    if (gender != null) {
+                                        switch (gender) {
+                                            case "M" -> role = "F";
+                                            case "F" -> role = "M";
+                                        }
+                                    }
+                                    psParent.setString(1, ref);
+                                    psParent.setString(2, currentPerson.id);
+                                    psParent.setString(3, role);
+                                    psParent.executeUpdate();
+                                } catch (SQLException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }
+                        }
+                    }
+                }
+                case "daughter" -> {
+                    if (currentPerson != null) {
+                        if (inChildren) {
+                            String ref = attrs.getValue("ref");
+                            if (ref != null) {
+                                try {
+                                    String role = "M";
+                                    String gender = currentPerson.gender;
+                                    if (gender != null) {
+                                        switch (gender) {
+                                            case "M" -> role = "F";
+                                            case "F" -> role = "M";
+                                        }
+                                    }
+                                    psParent.setString(1, ref);
+                                    psParent.setString(2, currentPerson.id);
+                                    psParent.setString(3, role);
+                                    psParent.executeUpdate();
+                                } catch (SQLException e) {
+                                    throw new RuntimeException(e);
+                                }
+                            }
+                        }
+                    }
+                }
+                case "brother" -> {
+                    if (currentPerson != null && inSiblings) {
+                        String ref = attrs.getValue("ref");
+                        if (ref != null) {
+                            try {
+                                psSibling.setString(1, currentPerson.id);
+                                psSibling.setString(2, ref);
+                                psSibling.setString(3, "B");
+                                psSibling.executeUpdate();
+                            } catch (SQLException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    }
+                }
+                case "sister" -> {
+                    if (currentPerson != null && inSiblings) {
+                        String ref = attrs.getValue("ref");
+                        if (ref != null) {
+                            try {
+                                psSibling.setString(1, currentPerson.id);
+                                psSibling.setString(2, ref);
+                                psSibling.setString(3, "S");
+                                psSibling.executeUpdate();
+                            } catch (SQLException e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                    }
                 }
             }
         }
-        
+
         @Override
         public void characters(char[] ch, int start, int length) {
             if (text != null) {
                 text.append(ch, start, length);
             }
         }
-        
+
         @Override
-        public void endElement(String uri, String localName, String qName) throws SAXException {
+        public void endElement(String uri, String localName, String qName) {
             String value = text != null ? text.toString().trim() : "";
-            
-            if (currentPerson != null) {
-                switch (qName) {
-                    case "first-name" -> currentPerson.firstName = value.isEmpty() ? null : value;
-                    case "last-name" -> currentPerson.lastName = value.isEmpty() ? null : value;
-                    case "gender" -> {
+
+            switch (qName) {
+                case "first-name" -> {
+                    if (currentPerson != null) {
+                        currentPerson.firstName = value.isEmpty() ? null : value;
+                    }
+                }
+                case "last-name" -> {
+                    if (currentPerson != null) {
+                        currentPerson.lastName = value.isEmpty() ? null : value;
+                    }
+                }
+                case "gender" -> {
+                    if (currentPerson != null) {
                         if (!value.isEmpty()) {
                             currentPerson.gender = switch (value.toLowerCase()) {
-                                case "male", "m" -> "M";
-                                case "female", "f" -> "F";
+                                case "male" -> "M";
+                                case "female" -> "F";
+                                case "unknown" -> "U";
                                 default -> null;
                             };
                         }
                     }
-                    case "person" -> {
+                }
+                case "parents" -> {
+                    inParents = false;
+                }
+                case "children" -> {
+                    inChildren = false;
+                }
+                case "siblings" -> {
+                    inSiblings = false;
+                }
+                case "person" -> {
+                    if (currentPerson != null) {
                         try {
-                            ps.setString(1, currentPerson.id);
-                            ps.setString(2, currentPerson.firstName);
-                            ps.setString(3, currentPerson.lastName);
-                            ps.setString(4, currentPerson.gender);
-                            ps.setString(5, currentPerson.spouseId);
-                            ps.setString(6, currentPerson.fatherId);
-                            ps.setString(7, currentPerson.motherId);
-                            ps.executeUpdate();
-                            count++;
-                            if (count % 1000 == 0) {
+                            psPerson.setString(1, currentPerson.id);
+                            psPerson.setString(2, currentPerson.firstName);
+                            psPerson.setString(3, currentPerson.lastName);
+                            psPerson.setString(4, currentPerson.gender);
+                            psPerson.setString(5, currentPerson.spouseId);
+                            psPerson.executeUpdate();
+                            personCount++;
+                            if (personCount % 1000 == 0) {
                                 conn.commit();
                             }
                         } catch (SQLException e) {
-                            throw new SAXException(e);
+                            throw new RuntimeException(e);
                         }
                         currentPerson = null;
                     }
                 }
             }
         }
-        
+
         @Override
-        public void endDocument() throws SAXException {
+        public void endDocument() {
             try {
                 conn.commit();
             } catch (SQLException e) {
-                throw new SAXException(e);
+                throw new RuntimeException(e);
             }
         }
     }
-    
-    private static class Person {
+
+    private static class PersonData {
         String id;
         String firstName;
         String lastName;
         String gender;
         String spouseId;
-        String fatherId;
-        String motherId;
     }
 }
