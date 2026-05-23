@@ -77,7 +77,7 @@ async def create_booking(
     if len(flight_ids) != len(set(flight_ids)):
         raise ValueError("Duplicate flight_ids in booking request")
 
-    await session.execute(text("SET TRANSACTION ISOLATION LEVEL SERIALIZABLE"))
+    await session.execute(text("SET TRANSACTION ISOLATION LEVEL REPEATABLE READ"))
 
     for flight_id in flight_ids:
         await _check_seat_availability(session, flight_id, booking_class)
