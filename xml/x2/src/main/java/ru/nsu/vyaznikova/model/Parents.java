@@ -3,30 +3,28 @@ package ru.nsu.vyaznikova.model;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
-import java.util.ArrayList;
-import java.util.List;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Parents {
     @XmlElement(name = "father")
-    private List<ParentRefOrName> father = new ArrayList<>();
+    private ParentRefOrName father;
 
     @XmlElement(name = "mother")
-    private List<ParentRefOrName> mother = new ArrayList<>();
+    private ParentRefOrName mother;
 
-    public List<ParentRefOrName> getFather() {
+    public ParentRefOrName getFather() {
         return father;
     }
 
-    public void setFather(List<ParentRefOrName> father) {
+    public void setFather(ParentRefOrName father) {
         this.father = father;
     }
 
-    public List<ParentRefOrName> getMother() {
+    public ParentRefOrName getMother() {
         return mother;
     }
 
-    public void setMother(List<ParentRefOrName> mother) {
+    public void setMother(ParentRefOrName mother) {
         this.mother = mother;
     }
 }
