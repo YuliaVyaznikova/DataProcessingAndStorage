@@ -1766,9 +1766,7 @@
     <person id="P405951">
         <parents>
             <father ref="P399847"/>
-            <father ref="P397725"/>
             <mother ref="P399847"/>
-            <mother ref="P397725"/>
         </parents>
     </person>
     <person id="P393449">
@@ -1859,9 +1857,7 @@
         <last-name>Estronza</last-name>
         <parents>
             <father ref="P390781"/>
-            <father ref="P394915"/>
             <mother ref="P390781"/>
-            <mother ref="P394915"/>
         </parents>
     </person>
     <person id="NAME_Dean_Zelek">
@@ -2729,9 +2725,7 @@
     <person id="P405932">
         <parents>
             <father ref="P400574"/>
-            <father ref="P402868"/>
             <mother ref="P400574"/>
-            <mother ref="P402868"/>
         </parents>
     </person>
     <person id="P405931">
@@ -2833,9 +2827,7 @@
     <person id="P405921">
         <parents>
             <father ref="P395884"/>
-            <father ref="P400227"/>
             <mother ref="P395884"/>
-            <mother ref="P400227"/>
         </parents>
         <siblings>
             <brother ref="P405923"/>
@@ -4188,9 +4180,7 @@
         <first-name>Lane</first-name>
         <parents>
             <father ref="P385243"/>
-            <father ref="P381538"/>
             <mother ref="P385243"/>
-            <mother ref="P381538"/>
         </parents>
     </person>
     <person id="P381579">
@@ -7036,9 +7026,7 @@
     <person id="P391008">
         <parents>
             <father ref="P386357"/>
-            <father ref="P386646"/>
             <mother ref="P386357"/>
-            <mother ref="P386646"/>
         </parents>
     </person>
     <person id="P393667">
@@ -7124,9 +7112,7 @@
         <last-name>Resenz</last-name>
         <parents>
             <father ref="P381106"/>
-            <father ref="P384624"/>
             <mother ref="P381106"/>
-            <mother ref="P384624"/>
         </parents>
         <children>
             <daughter ref="P397579"/>
@@ -7518,9 +7504,7 @@
         <last-name>Metts</last-name>
         <parents>
             <father ref="P383784"/>
-            <father ref="P383501"/>
             <mother ref="P383784"/>
-            <mother ref="P383501"/>
         </parents>
     </person>
     <person id="P403593">
@@ -7716,9 +7700,7 @@
         <last-name>Sanmartin</last-name>
         <parents>
             <father ref="P398257"/>
-            <father ref="P396582"/>
             <mother ref="P398257"/>
-            <mother ref="P396582"/>
         </parents>
     </person>
     <person id="NAME_Royce_Wueste">
@@ -10513,9 +10495,7 @@
         <gender>female</gender>
         <parents>
             <father ref="P380584"/>
-            <father ref="P384891"/>
             <mother ref="P380584"/>
-            <mother ref="P384891"/>
         </parents>
     </person>
     <person id="NAME_Easter_Padgette">
@@ -13115,9 +13095,7 @@
     <person id="P391323">
         <parents>
             <father ref="P381940"/>
-            <father ref="P380116"/>
             <mother ref="P381940"/>
-            <mother ref="P380116"/>
         </parents>
         <siblings>
             <brother ref="P391321"/>
@@ -16852,9 +16830,7 @@
         <spouse name="Macie Flannagan"/>
         <parents>
             <father ref="P404310"/>
-            <father ref="P396411"/>
             <mother ref="P404310"/>
-            <mother ref="P396411"/>
         </parents>
     </person>
     <person id="P403823"/>
@@ -17532,9 +17508,7 @@
         <last-name>Quihuiz</last-name>
         <parents>
             <father ref="P381110"/>
-            <father ref="P382588"/>
             <mother ref="P381110"/>
-            <mother ref="P382588"/>
         </parents>
     </person>
     <person id="P391508">
@@ -17563,9 +17537,7 @@
         <first-name>Rubye</first-name>
         <parents>
             <father ref="P382860"/>
-            <father ref="P380138"/>
             <mother ref="P382860"/>
-            <mother ref="P380138"/>
         </parents>
     </person>
     <person id="P391501">
@@ -17608,9 +17580,7 @@
         <spouse ref="P387783"/>
         <parents>
             <father ref="P381670"/>
-            <father ref="P379989"/>
             <mother ref="P381670"/>
-            <mother ref="P379989"/>
         </parents>
     </person>
     <person id="NAME__Tinnell">
@@ -17822,9 +17792,7 @@
         <last-name>Norko</last-name>
         <parents>
             <father ref="P401578"/>
-            <father ref="P397093"/>
             <mother ref="P401578"/>
-            <mother ref="P397093"/>
         </parents>
     </person>
     <person id="NAME_Elias_Leckband">
@@ -18270,9 +18238,7 @@
     <person id="P391582">
         <parents>
             <father ref="P385169"/>
-            <father ref="P383014"/>
             <mother ref="P385169"/>
-            <mother ref="P383014"/>
         </parents>
     </person>
     <person id="P391589">
@@ -19223,9 +19189,7 @@
         <last-name>Amores</last-name>
         <parents>
             <father ref="P388829"/>
-            <father ref="P393601"/>
             <mother ref="P388829"/>
-            <mother ref="P393601"/>
         </parents>
         <siblings>
             <brother ref="P397638"/>
@@ -19889,9 +19853,7 @@
         <spouse ref="P388760"/>
         <parents>
             <father ref="P386181"/>
-            <father ref="P383072"/>
             <mother ref="P386181"/>
-            <mother ref="P383072"/>
         </parents>
         <children>
             <daughter ref="P396595"/>
@@ -20433,9 +20395,7 @@
     <person id="P391667">
         <parents>
             <father ref="P382892"/>
-            <father ref="P386401"/>
             <mother ref="P382892"/>
-            <mother ref="P386401"/>
         </parents>
         <children>
             <son ref="P399248"/>
@@ -20826,9 +20786,7 @@
     <person id="P388068">
         <parents>
             <father ref="P382376"/>
-            <father ref="P382656"/>
             <mother ref="P382376"/>
-            <mother ref="P382656"/>
         </parents>
     </person>
     <person id="NAME__Mckerrow">
@@ -22091,9 +22049,7 @@
         <first-name>Allena</first-name>
         <parents>
             <father ref="P397864"/>
-            <father ref="P398314"/>
             <mother ref="P397864"/>
-            <mother ref="P398314"/>
         </parents>
     </person>
     <person id="NAME_Cecilia_Tanen">
@@ -22872,9 +22828,7 @@
         <first-name>Margarete</first-name>
         <parents>
             <father ref="P389297"/>
-            <father ref="P394913"/>
             <mother ref="P389297"/>
-            <mother ref="P394913"/>
         </parents>
     </person>
     <person id="P405132">
@@ -22930,9 +22884,7 @@
         <first-name>Marianne</first-name>
         <parents>
             <father ref="P398754"/>
-            <father ref="P399379"/>
             <mother ref="P398754"/>
-            <mother ref="P399379"/>
         </parents>
         <siblings>
             <sister ref="P407787"/>
@@ -22949,9 +22901,7 @@
         <spouse name="Lory Elgen"/>
         <parents>
             <father ref="P395919"/>
-            <father ref="P396679"/>
             <mother ref="P395919"/>
-            <mother ref="P396679"/>
         </parents>
     </person>
     <person id="P405123">
@@ -23882,9 +23832,7 @@
         <spouse ref="P401658"/>
         <parents>
             <father ref="P391431"/>
-            <father ref="P391959"/>
             <mother ref="P391431"/>
-            <mother ref="P391959"/>
         </parents>
     </person>
     <person id="P407710">
@@ -23924,9 +23872,7 @@
     <person id="P397825">
         <parents>
             <father ref="P394288"/>
-            <father ref="P388827"/>
             <mother ref="P394288"/>
-            <mother ref="P388827"/>
         </parents>
     </person>
     <person id="P397826">
@@ -23949,9 +23895,7 @@
         <last-name>Bannon</last-name>
         <parents>
             <father ref="P386773"/>
-            <father ref="P395291"/>
             <mother ref="P386773"/>
-            <mother ref="P395291"/>
         </parents>
     </person>
     <person id="P385843">
@@ -24359,9 +24303,7 @@
     <person id="P397845">
         <parents>
             <father ref="P392564"/>
-            <father ref="P388745"/>
             <mother ref="P392564"/>
-            <mother ref="P388745"/>
         </parents>
         <siblings>
             <brother ref="P397844"/>
@@ -24482,9 +24424,7 @@
     <person id="P397874">
         <parents>
             <father ref="P395239"/>
-            <father ref="P394317"/>
             <mother ref="P395239"/>
-            <mother ref="P394317"/>
         </parents>
     </person>
     <person id="P395215">
@@ -25015,9 +24955,7 @@
     <person id="P397887">
         <parents>
             <father ref="P391691"/>
-            <father ref="P388497"/>
             <mother ref="P391691"/>
-            <mother ref="P388497"/>
         </parents>
         <siblings>
             <brother ref="P397884"/>
@@ -25818,9 +25756,7 @@
     <person id="P405287">
         <parents>
             <father ref="P401006"/>
-            <father ref="P404064"/>
             <mother ref="P401006"/>
-            <mother ref="P404064"/>
         </parents>
     </person>
     <person id="NAME_Clarisa_Cavener">
@@ -25844,9 +25780,7 @@
     <person id="P405280">
         <parents>
             <father ref="P401304"/>
-            <father ref="P401589"/>
             <mother ref="P401304"/>
-            <mother ref="P401589"/>
         </parents>
         <siblings>
             <brother ref="P405278"/>
@@ -26263,9 +26197,7 @@
     <person id="P405212">
         <parents>
             <father ref="P402688"/>
-            <father ref="P398073"/>
             <mother ref="P402688"/>
-            <mother ref="P398073"/>
         </parents>
     </person>
     <person id="P407878"/>
@@ -26372,9 +26304,7 @@
     <person id="P407865">
         <parents>
             <father ref="P401921"/>
-            <father ref="P401925"/>
             <mother ref="P401921"/>
-            <mother ref="P401925"/>
         </parents>
         <siblings>
             <brother ref="P407864"/>
@@ -26742,9 +26672,7 @@
     <person id="P405250">
         <parents>
             <father ref="P397065"/>
-            <father ref="P402745"/>
             <mother ref="P397065"/>
-            <mother ref="P402745"/>
         </parents>
     </person>
     <person id="NAME_Willia_">
@@ -27028,9 +26956,7 @@
     <person id="P397913">
         <parents>
             <father ref="P389793"/>
-            <father ref="P392401"/>
             <mother ref="P389793"/>
-            <mother ref="P392401"/>
         </parents>
         <children>
             <daughter ref="P405620"/>
@@ -27389,9 +27315,7 @@
     <person id="P397921">
         <parents>
             <father ref="P389838"/>
-            <father ref="P390969"/>
             <mother ref="P389838"/>
-            <mother ref="P390969"/>
         </parents>
     </person>
     <person id="NAME_Ligia_">
@@ -28256,9 +28180,7 @@
     <person id="P407812">
         <parents>
             <father ref="P402350"/>
-            <father ref="P401897"/>
             <mother ref="P402350"/>
-            <mother ref="P401897"/>
         </parents>
         <siblings>
             <brother ref="P407811"/>
@@ -29948,9 +29870,7 @@
     <person id="P405333">
         <parents>
             <father ref="P401080"/>
-            <father ref="P401449"/>
             <mother ref="P401080"/>
-            <mother ref="P401449"/>
         </parents>
         <siblings>
             <brother ref="P405332"/>
@@ -30642,9 +30562,7 @@
     <person id="P405350">
         <parents>
             <father ref="P401046"/>
-            <father ref="P397559"/>
             <mother ref="P401046"/>
-            <mother ref="P397559"/>
         </parents>
     </person>
     <person id="NAME_Shawnda_Crittle">
@@ -30813,9 +30731,7 @@
         <first-name>Cecily</first-name>
         <parents>
             <father ref="P400033"/>
-            <father ref="P402635"/>
             <mother ref="P400033"/>
-            <mother ref="P402635"/>
         </parents>
     </person>
     <person id="P407913">
@@ -31155,9 +31071,7 @@
         <spouse ref="P405041"/>
         <parents>
             <father ref="P399535"/>
-            <father ref="P399276"/>
             <mother ref="P399535"/>
-            <mother ref="P399276"/>
         </parents>
         <siblings>
             <sister ref="P405301"/>
@@ -33203,9 +33117,7 @@
     <person id="P405475">
         <parents>
             <father ref="P397011"/>
-            <father ref="P401205"/>
             <mother ref="P397011"/>
-            <mother ref="P401205"/>
         </parents>
     </person>
     <person id="P405474">
@@ -34126,9 +34038,7 @@
     <person id="P405408">
         <parents>
             <father ref="P404227"/>
-            <father ref="P399454"/>
             <mother ref="P404227"/>
-            <mother ref="P399454"/>
         </parents>
     </person>
     <person id="NAME_Morton_">
@@ -35312,9 +35222,7 @@
     <person id="P405557">
         <parents>
             <father ref="P396357"/>
-            <father ref="P402814"/>
             <mother ref="P396357"/>
-            <mother ref="P402814"/>
         </parents>
     </person>
     <person id="NAME_Delia_">
@@ -38543,9 +38451,7 @@
         <first-name>Corine</first-name>
         <parents>
             <father ref="P398373"/>
-            <father ref="P401391"/>
             <mother ref="P398373"/>
-            <mother ref="P401391"/>
         </parents>
     </person>
     <person id="P383808">
@@ -39208,9 +39114,7 @@
     <person id="P395832">
         <parents>
             <father ref="P387885"/>
-            <father ref="P389107"/>
             <mother ref="P387885"/>
-            <mother ref="P389107"/>
         </parents>
     </person>
     <person id="P395835">
@@ -40668,9 +40572,7 @@
         <first-name>Jenee</first-name>
         <parents>
             <father ref="P400171"/>
-            <father ref="P398912"/>
             <mother ref="P400171"/>
-            <mother ref="P398912"/>
         </parents>
     </person>
     <person id="P383781">
@@ -42024,9 +41926,7 @@
         <gender>female</gender>
         <parents>
             <father ref="P384791"/>
-            <father ref="P380834"/>
             <mother ref="P384791"/>
-            <mother ref="P380834"/>
         </parents>
     </person>
     <person id="NAME_Frederick_">
@@ -43578,9 +43478,7 @@
     <person id="P395840">
         <parents>
             <father ref="P391020"/>
-            <father ref="P386732"/>
             <mother ref="P391020"/>
-            <mother ref="P386732"/>
         </parents>
     </person>
     <person id="P395842">
@@ -43742,9 +43640,7 @@
         <first-name>Dominga</first-name>
         <parents>
             <father ref="P401135"/>
-            <father ref="P396668"/>
             <mother ref="P401135"/>
-            <mother ref="P396668"/>
         </parents>
     </person>
     <person id="P383868">
@@ -43987,9 +43883,7 @@
         <first-name>Graciela</first-name>
         <parents>
             <father ref="P402013"/>
-            <father ref="P398142"/>
             <mother ref="P402013"/>
-            <mother ref="P398142"/>
         </parents>
     </person>
     <person id="NAME__Lichtenstein">
@@ -44600,9 +44494,7 @@
     <person id="P395883">
         <parents>
             <father ref="P393231"/>
-            <father ref="P395517"/>
             <mother ref="P393231"/>
-            <mother ref="P395517"/>
         </parents>
     </person>
     <person id="P393222">
@@ -45672,9 +45564,7 @@
     <person id="P405706">
         <parents>
             <father ref="P398128"/>
-            <father ref="P403314"/>
             <mother ref="P398128"/>
-            <mother ref="P403314"/>
         </parents>
         <siblings>
             <brother ref="P405703"/>
@@ -46355,9 +46245,7 @@
         <first-name>Tad</first-name>
         <parents>
             <father ref="P389130"/>
-            <father ref="P393423"/>
             <mother ref="P389130"/>
-            <mother ref="P393423"/>
         </parents>
     </person>
     <person id="P381417">
@@ -48701,9 +48589,7 @@
         <last-name>Gerritsen</last-name>
         <parents>
             <father ref="P402806"/>
-            <father ref="P397084"/>
             <mother ref="P402806"/>
-            <mother ref="P397084"/>
         </parents>
     </person>
     <person id="NAME_Albert_">
@@ -48764,9 +48650,7 @@
         <spouse ref="P405045"/>
         <parents>
             <father ref="P399009"/>
-            <father ref="P401027"/>
             <mother ref="P399009"/>
-            <mother ref="P401027"/>
         </parents>
     </person>
     <person id="P405823">
@@ -49222,9 +49106,7 @@
     <person id="P387674">
         <parents>
             <father ref="P384757"/>
-            <father ref="P383963"/>
             <mother ref="P384757"/>
-            <mother ref="P383963"/>
         </parents>
     </person>
     <person id="NAME__Ghekiere">
@@ -49916,9 +49798,7 @@
         <gender>male</gender>
         <parents>
             <father ref="P401472"/>
-            <father ref="P403249"/>
             <mother ref="P401472"/>
-            <mother ref="P403249"/>
         </parents>
         <siblings>
             <brother ref="P409516"/>
@@ -50209,9 +50089,7 @@
         <gender>female</gender>
         <parents>
             <father ref="P392924"/>
-            <father ref="P392898"/>
             <mother ref="P392924"/>
-            <mother ref="P392898"/>
         </parents>
     </person>
     <person id="P410579"/>
@@ -51776,9 +51654,7 @@
         <last-name>Chimes</last-name>
         <parents>
             <father ref="P383741"/>
-            <father ref="P381537"/>
             <mother ref="P383741"/>
-            <mother ref="P381537"/>
         </parents>
     </person>
     <person id="NAME_Crystal_Slaby">
@@ -53063,9 +52939,7 @@
         <last-name>Kegley</last-name>
         <parents>
             <father ref="P385335"/>
-            <father ref="P385481"/>
             <mother ref="P385335"/>
-            <mother ref="P385481"/>
         </parents>
     </person>
     <person id="NAME_Hye_">
@@ -54006,9 +53880,7 @@
         <gender>female</gender>
         <parents>
             <father ref="P393785"/>
-            <father ref="P393818"/>
             <mother ref="P393785"/>
-            <mother ref="P393818"/>
         </parents>
         <children>
             <daughter ref="P404826"/>
@@ -54408,9 +54280,7 @@
     <person id="P399783">
         <parents>
             <father ref="P395622"/>
-            <father ref="P393054"/>
             <mother ref="P395622"/>
-            <mother ref="P393054"/>
         </parents>
     </person>
     <person id="P397120">
@@ -54452,9 +54322,7 @@
     <person id="P407047">
         <parents>
             <father ref="P401543"/>
-            <father ref="P402750"/>
             <mother ref="P401543"/>
-            <mother ref="P402750"/>
         </parents>
     </person>
     <person id="P410699">
@@ -54912,9 +54780,7 @@
         <first-name>Jenae</first-name>
         <parents>
             <father ref="P398036"/>
-            <father ref="P398156"/>
             <mother ref="P398036"/>
-            <mother ref="P398156"/>
         </parents>
     </person>
     <person id="P397178">
@@ -55061,9 +54927,7 @@
         <last-name>Whittington</last-name>
         <parents>
             <father ref="P399546"/>
-            <father ref="P403952"/>
             <mother ref="P399546"/>
-            <mother ref="P403952"/>
         </parents>
     </person>
     <person id="P397173"/>
@@ -55105,9 +54969,7 @@
     <person id="P397170">
         <parents>
             <father ref="P391220"/>
-            <father ref="P395496"/>
             <mother ref="P391220"/>
-            <mother ref="P395496"/>
         </parents>
         <siblings>
             <sister ref="P397169"/>
@@ -55374,9 +55236,7 @@
     <person id="P397161">
         <parents>
             <father ref="P393555"/>
-            <father ref="P387823"/>
             <mother ref="P393555"/>
-            <mother ref="P387823"/>
         </parents>
     </person>
     <person id="P397199"/>
@@ -55596,9 +55456,7 @@
         <spouse name="NONE"/>
         <parents>
             <father ref="P398331"/>
-            <father ref="P400888"/>
             <mother ref="P398331"/>
-            <mother ref="P400888"/>
         </parents>
     </person>
     <person id="P409626">
@@ -56464,9 +56322,7 @@
     <person id="P399715">
         <parents>
             <father ref="P392222"/>
-            <father ref="P392601"/>
             <mother ref="P392222"/>
-            <mother ref="P392601"/>
         </parents>
         <siblings>
             <brother ref="P399716"/>
@@ -57571,9 +57427,7 @@
         <spouse ref="P398434"/>
         <parents>
             <father ref="P390739"/>
-            <father ref="P394828"/>
             <mother ref="P390739"/>
-            <mother ref="P394828"/>
         </parents>
     </person>
     <person id="P410775">
@@ -57782,9 +57636,7 @@
     <person id="P399892">
         <parents>
             <father ref="P386828"/>
-            <father ref="P394303"/>
             <mother ref="P386828"/>
-            <mother ref="P394303"/>
         </parents>
         <siblings>
             <brother ref="P399890"/>
@@ -58051,9 +57903,7 @@
         <last-name>Filippone</last-name>
         <parents>
             <father ref="P387925"/>
-            <father ref="P395526"/>
             <mother ref="P387925"/>
-            <mother ref="P395526"/>
         </parents>
         <children>
             <son ref="P408237"/>
@@ -58384,9 +58234,7 @@
         <gender>female</gender>
         <parents>
             <father ref="P389159"/>
-            <father ref="P388734"/>
             <mother ref="P389159"/>
-            <mother ref="P388734"/>
         </parents>
     </person>
     <person id="NAME_Wayne_Urbani">
@@ -58414,9 +58262,7 @@
     <person id="P397249">
         <parents>
             <father ref="P389507"/>
-            <father ref="P394207"/>
             <mother ref="P389507"/>
-            <mother ref="P394207"/>
         </parents>
         <siblings>
             <brother ref="P397248"/>
@@ -58834,9 +58680,7 @@
         <gender>female</gender>
         <parents>
             <father ref="P397091"/>
-            <father ref="P403040"/>
             <mother ref="P397091"/>
-            <mother ref="P403040"/>
         </parents>
     </person>
     <person id="P397265">
@@ -59052,9 +58896,7 @@
         <last-name>Taunton</last-name>
         <parents>
             <father ref="P398304"/>
-            <father ref="P402732"/>
             <mother ref="P398304"/>
-            <mother ref="P402732"/>
         </parents>
         <siblings>
             <brother ref="P407142"/>
@@ -59183,9 +59025,7 @@
         <last-name>Holzmeister</last-name>
         <parents>
             <father ref="P401573"/>
-            <father ref="P399031"/>
             <mother ref="P401573"/>
-            <mother ref="P399031"/>
         </parents>
     </person>
     <person id="P410786"/>
@@ -59338,9 +59178,7 @@
         <first-name>Candie</first-name>
         <parents>
             <father ref="P393038"/>
-            <father ref="P386689"/>
             <mother ref="P393038"/>
-            <mother ref="P386689"/>
         </parents>
     </person>
     <person id="P397283">
@@ -60428,9 +60266,7 @@
     <person id="P399816">
         <parents>
             <father ref="P393121"/>
-            <father ref="P389632"/>
             <mother ref="P393121"/>
-            <mother ref="P389632"/>
         </parents>
     </person>
     <person id="P407085">
@@ -60565,9 +60401,7 @@
         <first-name>Lisbeth</first-name>
         <parents>
             <father ref="P403233"/>
-            <father ref="P399241"/>
             <mother ref="P403233"/>
-            <mother ref="P399241"/>
         </parents>
     </person>
     <person id="P399809">
@@ -60951,9 +60785,7 @@
     <person id="P407058">
         <parents>
             <father ref="P402431"/>
-            <father ref="P400438"/>
             <mother ref="P402431"/>
-            <mother ref="P400438"/>
         </parents>
         <siblings>
             <brother ref="P407057"/>
@@ -61663,9 +61495,7 @@
     <person id="P399871">
         <parents>
             <father ref="P389720"/>
-            <father ref="P390134"/>
             <mother ref="P389720"/>
-            <mother ref="P390134"/>
         </parents>
     </person>
     <person id="P387893">
@@ -61693,9 +61523,7 @@
     <person id="P387895">
         <parents>
             <father ref="P382355"/>
-            <father ref="P380177"/>
             <mother ref="P382355"/>
-            <mother ref="P380177"/>
         </parents>
     </person>
     <person id="NAME_Herman_">
@@ -62515,9 +62343,7 @@
         <gender>male</gender>
         <parents>
             <father ref="P404311"/>
-            <father ref="P402813"/>
             <mother ref="P404311"/>
-            <mother ref="P402813"/>
         </parents>
     </person>
     <person id="P410878">
@@ -63075,9 +62901,7 @@
         <last-name>Wamsley</last-name>
         <parents>
             <father ref="P395608"/>
-            <father ref="P390733"/>
             <mother ref="P395608"/>
-            <mother ref="P390733"/>
         </parents>
     </person>
     <person id="P407283">
@@ -63460,9 +63284,7 @@
     <person id="P409826">
         <parents>
             <father ref="P400905"/>
-            <father ref="P398935"/>
             <mother ref="P400905"/>
-            <mother ref="P398935"/>
         </parents>
     </person>
     <person id="P410810">
@@ -63848,9 +63670,7 @@
     <person id="P409866">
         <parents>
             <father ref="P399028"/>
-            <father ref="P401995"/>
             <mother ref="P399028"/>
-            <mother ref="P401995"/>
         </parents>
         <siblings>
             <brother ref="P409865"/>
@@ -63873,9 +63693,7 @@
         <spouse ref="P406404"/>
         <parents>
             <father ref="P397632"/>
-            <father ref="P398303"/>
             <mother ref="P397632"/>
-            <mother ref="P398303"/>
         </parents>
     </person>
     <person id="P410850">
@@ -64102,9 +63920,7 @@
         <gender>female</gender>
         <parents>
             <father ref="P401235"/>
-            <father ref="P396073"/>
             <mother ref="P401235"/>
-            <mother ref="P396073"/>
         </parents>
     </person>
     <person id="P410839">
@@ -64690,9 +64506,7 @@
     <person id="P399908">
         <parents>
             <father ref="P392132"/>
-            <father ref="P392403"/>
             <mother ref="P392132"/>
-            <mother ref="P392403"/>
         </parents>
     </person>
     <person id="P399907">
@@ -64960,9 +64774,7 @@
     <person id="P399921">
         <parents>
             <father ref="P389419"/>
-            <father ref="P387841"/>
             <mother ref="P389419"/>
-            <mother ref="P387841"/>
         </parents>
     </person>
     <person id="P399920">
@@ -65017,9 +64829,7 @@
         <first-name>Maurice</first-name>
         <parents>
             <father ref="P382498"/>
-            <father ref="P382792"/>
             <mother ref="P382498"/>
-            <mother ref="P382792"/>
         </parents>
         <siblings>
             <brother ref="P388013"/>
@@ -65486,9 +65296,7 @@
     <person id="P399948">
         <parents>
             <father ref="P394430"/>
-            <father ref="P387851"/>
             <mother ref="P394430"/>
-            <mother ref="P387851"/>
         </parents>
     </person>
     <person id="P399947">
@@ -65581,9 +65389,7 @@
     <person id="P387963">
         <parents>
             <father ref="P386418"/>
-            <father ref="P385078"/>
             <mother ref="P386418"/>
-            <mother ref="P385078"/>
         </parents>
         <siblings>
             <brother ref="P387962"/>
@@ -65694,9 +65500,7 @@
         <last-name>Baldiviez</last-name>
         <parents>
             <father ref="P380291"/>
-            <father ref="P383545"/>
             <mother ref="P380291"/>
-            <mother ref="P383545"/>
         </parents>
     </person>
     <person id="P399972">
@@ -67008,9 +66812,7 @@
         <first-name>Violette</first-name>
         <parents>
             <father ref="P388041"/>
-            <father ref="P395392"/>
             <mother ref="P388041"/>
-            <mother ref="P395392"/>
         </parents>
     </person>
     <person id="P410983">
@@ -67641,9 +67443,7 @@
         <first-name>Mavis</first-name>
         <parents>
             <father ref="P399208"/>
-            <father ref="P398641"/>
             <mother ref="P399208"/>
-            <mother ref="P398641"/>
         </parents>
     </person>
     <person id="P409921">
@@ -67814,9 +67614,7 @@
         <first-name>Gino</first-name>
         <parents>
             <father ref="P383947"/>
-            <father ref="P384109"/>
             <mother ref="P383947"/>
-            <mother ref="P384109"/>
         </parents>
     </person>
     <person id="NAME__Achorn">
@@ -68109,9 +67907,7 @@
         <first-name>Ashlie</first-name>
         <parents>
             <father ref="P402279"/>
-            <father ref="P399586"/>
             <mother ref="P402279"/>
-            <mother ref="P399586"/>
         </parents>
         <siblings>
             <sister ref="NAME_Markus_Winterfeld"/>
@@ -68422,9 +68218,7 @@
     <person id="P409957">
         <parents>
             <father ref="P400129"/>
-            <father ref="P402616"/>
             <mother ref="P400129"/>
-            <mother ref="P402616"/>
         </parents>
     </person>
     <person id="P410942">
@@ -69255,9 +69049,7 @@
     <person id="P397425">
         <parents>
             <father ref="P389992"/>
-            <father ref="P392611"/>
             <mother ref="P389992"/>
-            <mother ref="P392611"/>
         </parents>
     </person>
     <person id="P397426">
@@ -70267,9 +70059,7 @@
         <gender>female</gender>
         <parents>
             <father ref="P402124"/>
-            <father ref="P400117"/>
             <mother ref="P402124"/>
-            <mother ref="P400117"/>
         </parents>
     </person>
     <person id="P407400">
@@ -71154,9 +70944,7 @@
         <last-name>Tardio</last-name>
         <parents>
             <father ref="P390073"/>
-            <father ref="P389921"/>
             <mother ref="P390073"/>
-            <mother ref="P389921"/>
         </parents>
     </person>
     <person id="P397517">
@@ -72113,9 +71901,7 @@
     <person id="P397561">
         <parents>
             <father ref="P395107"/>
-            <father ref="P392852"/>
             <mother ref="P395107"/>
-            <mother ref="P392852"/>
         </parents>
     </person>
     <person id="NAME_Rina_">
@@ -73401,9 +73187,7 @@
         <first-name>Cristal</first-name>
         <parents>
             <father ref="P398233"/>
-            <father ref="P401528"/>
             <mother ref="P398233"/>
-            <mother ref="P401528"/>
         </parents>
     </person>
     <person id="NAME_Hyon_Zuckerberg">
@@ -75402,9 +75186,7 @@
     <person id="P405065">
         <parents>
             <father ref="P400161"/>
-            <father ref="P396516"/>
             <mother ref="P400161"/>
-            <mother ref="P396516"/>
         </parents>
         <siblings>
             <sister ref="P405064"/>
@@ -76116,9 +75898,7 @@
         <spouse ref="P405129"/>
         <parents>
             <father ref="P396829"/>
-            <father ref="P399309"/>
             <mother ref="P396829"/>
-            <mother ref="P399309"/>
         </parents>
     </person>
     <person id="P405078"/>
@@ -76548,9 +76328,7 @@
     <person id="P405025">
         <parents>
             <father ref="P403221"/>
-            <father ref="P399938"/>
             <mother ref="P403221"/>
-            <mother ref="P399938"/>
         </parents>
     </person>
     <person id="NAME_Virgie_">
@@ -77353,9 +77131,7 @@
         <last-name>Possinger</last-name>
         <parents>
             <father ref="P394086"/>
-            <father ref="P388540"/>
             <mother ref="P394086"/>
-            <mother ref="P388540"/>
         </parents>
     </person>
     <person id="NAME_Eleanore_">
@@ -77609,9 +77385,7 @@
         <last-name>Andrulis</last-name>
         <parents>
             <father ref="P399334"/>
-            <father ref="P395946"/>
             <mother ref="P399334"/>
-            <mother ref="P395946"/>
         </parents>
     </person>
     <person id="P397732">
@@ -78828,9 +78602,7 @@
     <person id="P397782">
         <parents>
             <father ref="P392036"/>
-            <father ref="P393140"/>
             <mother ref="P392036"/>
-            <mother ref="P393140"/>
         </parents>
     </person>
     <person id="P397783">
@@ -80459,9 +80231,7 @@
     <person id="P390481">
         <parents>
             <father ref="P384105"/>
-            <father ref="P382024"/>
             <mother ref="P384105"/>
-            <mother ref="P382024"/>
         </parents>
         <siblings>
             <brother ref="P390482"/>
@@ -80619,9 +80389,7 @@
     <person id="P389485">
         <parents>
             <father ref="P382411"/>
-            <father ref="P384239"/>
             <mother ref="P382411"/>
-            <mother ref="P384239"/>
         </parents>
         <siblings>
             <brother ref="P389484"/>
@@ -80641,17 +80409,13 @@
     <person id="P389484">
         <parents>
             <father ref="P382411"/>
-            <father ref="P384239"/>
             <mother ref="P382411"/>
-            <mother ref="P384239"/>
         </parents>
     </person>
     <person id="P389487">
         <parents>
             <father ref="P386463"/>
-            <father ref="P386635"/>
             <mother ref="P386463"/>
-            <mother ref="P386635"/>
         </parents>
     </person>
     <person id="P390472">
@@ -82655,9 +82419,7 @@
     <person id="P389518">
         <parents>
             <father ref="P382141"/>
-            <father ref="P380224"/>
             <mother ref="P382141"/>
-            <mother ref="P380224"/>
         </parents>
         <siblings>
             <brother ref="P389519"/>
@@ -83023,9 +82785,7 @@
     <person id="P389520">
         <parents>
             <father ref="P382141"/>
-            <father ref="P380224"/>
             <mother ref="P382141"/>
-            <mother ref="P380224"/>
         </parents>
         <children>
             <daughter ref="P398269"/>
@@ -83040,9 +82800,7 @@
     <person id="P390510">
         <parents>
             <father ref="P380860"/>
-            <father ref="P385356"/>
             <mother ref="P380860"/>
-            <mother ref="P385356"/>
         </parents>
     </person>
     <person id="NAME_Nolan_Cunneen">
@@ -83802,9 +83560,7 @@
         <first-name>Jefferey</first-name>
         <parents>
             <father ref="P384111"/>
-            <father ref="P382337"/>
             <mother ref="P384111"/>
-            <mother ref="P382337"/>
         </parents>
     </person>
     <person id="P390580">
@@ -84873,9 +84629,7 @@
     <person id="P400326">
         <parents>
             <father ref="P390494"/>
-            <father ref="P392766"/>
             <mother ref="P390494"/>
-            <mother ref="P392766"/>
         </parents>
     </person>
     <person id="P402985">
@@ -85431,9 +85185,7 @@
     <person id="P400342">
         <parents>
             <father ref="P391508"/>
-            <father ref="P394669"/>
             <mother ref="P391508"/>
-            <mother ref="P394669"/>
         </parents>
     </person>
     <person id="P400341">
@@ -85812,9 +85564,7 @@
     <person id="P389639">
         <parents>
             <father ref="P385584"/>
-            <father ref="P384205"/>
             <mother ref="P385584"/>
-            <mother ref="P384205"/>
         </parents>
     </person>
     <person id="P390616"/>
@@ -85836,9 +85586,7 @@
         <gender>female</gender>
         <parents>
             <father ref="P386176"/>
-            <father ref="P381169"/>
             <mother ref="P386176"/>
-            <mother ref="P381169"/>
         </parents>
     </person>
     <person id="P389631">
@@ -85856,9 +85604,7 @@
         <last-name>Chindlund</last-name>
         <parents>
             <father ref="P383745"/>
-            <father ref="P386091"/>
             <mother ref="P383745"/>
-            <mother ref="P386091"/>
         </parents>
         <siblings>
             <brother ref="P389634"/>
@@ -86012,9 +85758,7 @@
     <person id="P389625">
         <parents>
             <father ref="P381586"/>
-            <father ref="P382085"/>
             <mother ref="P381586"/>
-            <mother ref="P382085"/>
         </parents>
         <siblings>
             <brother ref="NAME_Marina_Sulima"/>
@@ -86256,9 +86000,7 @@
         <last-name>Hanback</last-name>
         <parents>
             <father ref="P386098"/>
-            <father ref="P383849"/>
             <mother ref="P386098"/>
-            <mother ref="P383849"/>
         </parents>
     </person>
     <person id="P390631">
@@ -87051,9 +86793,7 @@
     <person id="P390685">
         <parents>
             <father ref="P381164"/>
-            <father ref="P383758"/>
             <mother ref="P381164"/>
-            <mother ref="P383758"/>
         </parents>
     </person>
     <person id="P390684">
@@ -87650,9 +87390,7 @@
     <person id="P399023">
         <parents>
             <father ref="P394691"/>
-            <father ref="P387854"/>
             <mother ref="P394691"/>
-            <mother ref="P387854"/>
         </parents>
         <siblings>
             <brother ref="P399025"/>
@@ -87695,9 +87433,7 @@
     <person id="P399020">
         <parents>
             <father ref="P393189"/>
-            <father ref="P390431"/>
             <mother ref="P393189"/>
-            <mother ref="P390431"/>
         </parents>
     </person>
     <person id="NAME_Delmar_Ulsh">
@@ -87874,9 +87610,7 @@
     <person id="P399048">
         <parents>
             <father ref="P394465"/>
-            <father ref="P391742"/>
             <mother ref="P394465"/>
-            <mother ref="P391742"/>
         </parents>
         <children>
             <son ref="P408476"/>
@@ -87969,9 +87703,7 @@
         <last-name>Moala</last-name>
         <parents>
             <father ref="P385160"/>
-            <father ref="P380248"/>
             <mother ref="P385160"/>
-            <mother ref="P380248"/>
         </parents>
     </person>
     <person id="NAME_Paris_Arnaud">
@@ -89444,9 +89176,7 @@
     <person id="P390742">
         <parents>
             <father ref="P381463"/>
-            <father ref="P380046"/>
             <mother ref="P381463"/>
-            <mother ref="P380046"/>
         </parents>
         <siblings>
             <brother ref="P390744"/>
@@ -89483,9 +89213,7 @@
     <person id="P390739">
         <parents>
             <father ref="P384430"/>
-            <father ref="P381627"/>
             <mother ref="P384430"/>
-            <mother ref="P381627"/>
         </parents>
         <children>
             <son ref="P399896"/>
@@ -91011,9 +90739,7 @@
         <spouse ref="P395095"/>
         <parents>
             <father ref="P385742"/>
-            <father ref="P382804"/>
             <mother ref="P385742"/>
-            <mother ref="P382804"/>
         </parents>
     </person>
     <person id="NAME_Trudi_Dissinger">
@@ -91256,9 +90982,7 @@
         <first-name>Lue</first-name>
         <parents>
             <father ref="P383400"/>
-            <father ref="P384616"/>
             <mother ref="P383400"/>
-            <mother ref="P384616"/>
         </parents>
         <siblings>
             <brother ref="P387162"/>
@@ -91546,9 +91270,7 @@
         <spouse ref="P403727"/>
         <parents>
             <father ref="P389641"/>
-            <father ref="P394573"/>
             <mother ref="P389641"/>
-            <mother ref="P394573"/>
         </parents>
     </person>
     <person id="P387188"/>
@@ -91875,9 +91597,7 @@
     <person id="P399094">
         <parents>
             <father ref="P391477"/>
-            <father ref="P389688"/>
             <mother ref="P391477"/>
-            <mother ref="P389688"/>
         </parents>
     </person>
     <person id="NAME_Dianne_">
@@ -92718,9 +92438,7 @@
         <gender>female</gender>
         <parents>
             <father ref="P382559"/>
-            <father ref="P386525"/>
             <mother ref="P382559"/>
-            <mother ref="P386525"/>
         </parents>
     </person>
     <person id="P400588">
@@ -93128,9 +92846,7 @@
     <person id="P389847">
         <parents>
             <father ref="P380965"/>
-            <father ref="P386199"/>
             <mother ref="P380965"/>
-            <mother ref="P386199"/>
         </parents>
     </person>
     <person id="P400726"/>
@@ -93246,9 +92962,7 @@
         <spouse ref="P394799"/>
         <parents>
             <father ref="P386391"/>
-            <father ref="P383347"/>
             <mother ref="P386391"/>
-            <mother ref="P383347"/>
         </parents>
         <siblings>
             <brother ref="P390855"/>
@@ -94003,9 +93717,7 @@
     <person id="P390870">
         <parents>
             <father ref="P384686"/>
-            <father ref="P380037"/>
             <mother ref="P384686"/>
-            <mother ref="P380037"/>
         </parents>
         <siblings>
             <brother ref="P390869"/>
@@ -94520,9 +94232,7 @@
     <person id="P387243">
         <parents>
             <father ref="P380480"/>
-            <father ref="P383138"/>
             <mother ref="P380480"/>
-            <mother ref="P383138"/>
         </parents>
     </person>
     <person id="NAME_Leeanne_Slatton">
@@ -94532,9 +94242,7 @@
     <person id="P390896">
         <parents>
             <father ref="P383386"/>
-            <father ref="P380817"/>
             <mother ref="P383386"/>
-            <mother ref="P380817"/>
         </parents>
         <siblings>
             <brother ref="P390898"/>
@@ -94818,9 +94526,7 @@
     <person id="P387279">
         <parents>
             <father ref="P386601"/>
-            <father ref="P385966"/>
             <mother ref="P386601"/>
-            <mother ref="P385966"/>
         </parents>
     </person>
     <person id="P399252">
@@ -94894,9 +94600,7 @@
     <person id="P399246">
         <parents>
             <father ref="P392494"/>
-            <father ref="P392523"/>
             <mother ref="P392494"/>
-            <mother ref="P392523"/>
         </parents>
         <siblings>
             <brother ref="NAME_Iesha_Lenix"/>
@@ -95112,9 +94816,7 @@
         <gender>female</gender>
         <parents>
             <father ref="P390076"/>
-            <father ref="P388060"/>
             <mother ref="P390076"/>
-            <mother ref="P388060"/>
         </parents>
     </person>
     <person id="P399274">
@@ -96434,9 +96136,7 @@
     <person id="P410003">
         <parents>
             <father ref="P399049"/>
-            <father ref="P399173"/>
             <mother ref="P399049"/>
-            <mother ref="P399173"/>
         </parents>
     </person>
     <person id="P409013">
@@ -96841,9 +96541,7 @@
     <person id="P389819">
         <parents>
             <father ref="P386659"/>
-            <father ref="P382787"/>
             <mother ref="P386659"/>
-            <mother ref="P382787"/>
         </parents>
         <siblings>
             <brother ref="P389822"/>
@@ -96996,9 +96694,7 @@
         <last-name>Summerford</last-name>
         <parents>
             <father ref="P382888"/>
-            <father ref="P379669"/>
             <mother ref="P382888"/>
-            <mother ref="P379669"/>
         </parents>
     </person>
     <person id="P389804"/>
@@ -97371,9 +97067,7 @@
         <last-name>Wozny</last-name>
         <parents>
             <father ref="P383587"/>
-            <father ref="P381517"/>
             <mother ref="P383587"/>
-            <mother ref="P381517"/>
         </parents>
     </person>
     <person id="NAME__Avery">
@@ -97418,9 +97112,7 @@
     <person id="P410027">
         <parents>
             <father ref="P402269"/>
-            <father ref="P398795"/>
             <mother ref="P402269"/>
-            <mother ref="P398795"/>
         </parents>
         <siblings>
             <sister ref="P410029"/>
@@ -98871,9 +98563,7 @@
     <person id="P399332">
         <parents>
             <father ref="P389020"/>
-            <father ref="P394722"/>
             <mother ref="P389020"/>
-            <mother ref="P394722"/>
         </parents>
     </person>
     <person id="NAME_Angelic_">
@@ -99483,9 +99173,7 @@
         <gender>female</gender>
         <parents>
             <father ref="P394464"/>
-            <father ref="P394074"/>
             <mother ref="P394464"/>
-            <mother ref="P394074"/>
         </parents>
     </person>
     <person id="P400876">
@@ -99769,9 +99457,7 @@
     <person id="P399376">
         <parents>
             <father ref="P393251"/>
-            <father ref="P394129"/>
             <mother ref="P393251"/>
-            <mother ref="P394129"/>
         </parents>
     </person>
     <person id="P399375">
@@ -99844,9 +99530,7 @@
         <spouse name="NONE"/>
         <parents>
             <father ref="P384463"/>
-            <father ref="P381821"/>
             <mother ref="P384463"/>
-            <mother ref="P381821"/>
         </parents>
     </person>
     <person id="P387381">
@@ -101499,9 +101183,7 @@
         <gender>male</gender>
         <parents>
             <father ref="P401975"/>
-            <father ref="P401968"/>
             <mother ref="P401975"/>
-            <mother ref="P401968"/>
         </parents>
     </person>
     <person id="P390912">
@@ -102933,9 +102615,7 @@
         <gender>female</gender>
         <parents>
             <father ref="P390164"/>
-            <father ref="P393051"/>
             <mother ref="P390164"/>
-            <mother ref="P393051"/>
         </parents>
     </person>
     <person id="NAME_Mayme_">
@@ -103319,9 +102999,7 @@
         <spouse ref="P410446"/>
         <parents>
             <father ref="P399982"/>
-            <father ref="P400902"/>
             <mother ref="P399982"/>
-            <mother ref="P400902"/>
         </parents>
     </person>
     <person id="P410328">
@@ -104040,9 +103718,7 @@
         <spouse name="NONE"/>
         <parents>
             <father ref="P390433"/>
-            <father ref="P390235"/>
             <mother ref="P390433"/>
-            <mother ref="P390235"/>
         </parents>
     </person>
     <person id="P399498">
@@ -104145,9 +103821,7 @@
     <person id="P399484">
         <parents>
             <father ref="P393851"/>
-            <father ref="P394461"/>
             <mother ref="P393851"/>
-            <mother ref="P394461"/>
         </parents>
         <children>
             <son ref="P406223"/>
@@ -105483,9 +105157,7 @@
         <last-name>Gains</last-name>
         <parents>
             <father ref="P384863"/>
-            <father ref="P384909"/>
             <mother ref="P384863"/>
-            <mother ref="P384909"/>
         </parents>
     </person>
     <person id="NAME__Joachin">
@@ -105852,9 +105524,7 @@
     <person id="P387550">
         <parents>
             <father ref="P383978"/>
-            <father ref="P386586"/>
             <mother ref="P383978"/>
-            <mother ref="P386586"/>
         </parents>
         <children>
             <daughter ref="P395909"/>
@@ -105964,9 +105634,7 @@
     <person id="P387557">
         <parents>
             <father ref="P382665"/>
-            <father ref="P380346"/>
             <mother ref="P382665"/>
-            <mother ref="P380346"/>
         </parents>
     </person>
     <person id="P387558">
@@ -106498,9 +106166,7 @@
     <person id="P399540">
         <parents>
             <father ref="P393770"/>
-            <father ref="P391147"/>
             <mother ref="P393770"/>
-            <mother ref="P391147"/>
         </parents>
     </person>
     <person id="NAME_Alden_Reasons">
@@ -106774,9 +106440,7 @@
         <gender>female</gender>
         <parents>
             <father ref="P395652"/>
-            <father ref="P389516"/>
             <mother ref="P395652"/>
-            <mother ref="P389516"/>
         </parents>
     </person>
     <person id="NAME_Phil_Hatheway">
@@ -107259,9 +106923,7 @@
     <person id="P409436">
         <parents>
             <father ref="P397039"/>
-            <father ref="P402247"/>
             <mother ref="P397039"/>
-            <mother ref="P402247"/>
         </parents>
     </person>
     <person id="P410421">
@@ -107635,9 +107297,7 @@
         <last-name>Closovschi</last-name>
         <parents>
             <father ref="P383570"/>
-            <father ref="P383681"/>
             <mother ref="P383570"/>
-            <mother ref="P383681"/>
         </parents>
         <children>
             <daughter ref="P396749"/>
@@ -107939,9 +107599,7 @@
     <person id="P409390">
         <parents>
             <father ref="P403861"/>
-            <father ref="P396706"/>
             <mother ref="P403861"/>
-            <mother ref="P396706"/>
         </parents>
     </person>
     <person id="P409392">
@@ -108162,9 +107820,7 @@
         <spouse ref="P409774"/>
         <parents>
             <father ref="P397469"/>
-            <father ref="P398220"/>
             <mother ref="P397469"/>
-            <mother ref="P398220"/>
         </parents>
     </person>
     <person id="P410355"/>
@@ -108829,9 +108485,7 @@
         <last-name>Mcclenningham</last-name>
         <parents>
             <father ref="P394512"/>
-            <father ref="P395207"/>
             <mother ref="P394512"/>
-            <mother ref="P395207"/>
         </parents>
     </person>
     <person id="P409393">
@@ -108897,9 +108551,7 @@
     <person id="P387520">
         <parents>
             <father ref="P382095"/>
-            <father ref="P382514"/>
             <mother ref="P382095"/>
-            <mother ref="P382514"/>
         </parents>
     </person>
     <person id="P410385">
@@ -115810,9 +115462,7 @@
     <person id="P404792">
         <parents>
             <father ref="P398092"/>
-            <father ref="P401777"/>
             <mother ref="P398092"/>
-            <mother ref="P401777"/>
         </parents>
         <siblings>
             <brother ref="P404794"/>
@@ -116092,9 +115742,7 @@
     <person id="P404789">
         <parents>
             <father ref="P397546"/>
-            <father ref="P399937"/>
             <mother ref="P397546"/>
-            <mother ref="P399937"/>
         </parents>
         <siblings>
             <brother ref="P404790"/>
@@ -116359,9 +116007,7 @@
     <person id="P404738">
         <parents>
             <father ref="P397563"/>
-            <father ref="P401016"/>
             <mother ref="P397563"/>
-            <mother ref="P401016"/>
         </parents>
         <siblings>
             <sister ref="NAME_Tanna_Tinker"/>
@@ -119009,18 +118655,14 @@
         <gender>female</gender>
         <parents>
             <father ref="P401361"/>
-            <father ref="P398392"/>
             <mother ref="P401361"/>
-            <mother ref="P398392"/>
         </parents>
     </person>
     <person id="P404813">
         <first-name>Mack</first-name>
         <parents>
             <father ref="P401361"/>
-            <father ref="P398392"/>
             <mother ref="P401361"/>
-            <mother ref="P398392"/>
         </parents>
     </person>
     <person id="P404812">
@@ -119068,9 +118710,7 @@
         <first-name>Carlotta</first-name>
         <parents>
             <father ref="P392527"/>
-            <father ref="P387756"/>
             <mother ref="P392527"/>
-            <mother ref="P387756"/>
         </parents>
     </person>
     <person id="NAME_Josefine_">
@@ -119418,9 +119058,7 @@
         <spouse name="NONE"/>
         <parents>
             <father ref="P398502"/>
-            <father ref="P403533"/>
             <mother ref="P398502"/>
-            <mother ref="P403533"/>
         </parents>
     </person>
     <person id="NAME_Janay_">
@@ -121301,9 +120939,7 @@
         <spouse ref="P406152"/>
         <parents>
             <father ref="P403650"/>
-            <father ref="P396182"/>
             <mother ref="P403650"/>
-            <mother ref="P396182"/>
         </parents>
     </person>
     <person id="NAME_Jillian_">
@@ -122583,9 +122219,7 @@
         <last-name>Virgili</last-name>
         <parents>
             <father ref="P385521"/>
-            <father ref="P382315"/>
             <mother ref="P385521"/>
-            <mother ref="P382315"/>
         </parents>
     </person>
     <person id="NAME_Adelaida_Franza">
@@ -123852,9 +123486,7 @@
     <person id="P390009">
         <parents>
             <father ref="P385425"/>
-            <father ref="P384083"/>
             <mother ref="P385425"/>
-            <mother ref="P384083"/>
         </parents>
     </person>
     <person id="P392664">
@@ -127370,9 +127002,7 @@
     <person id="P389136">
         <parents>
             <father ref="P380209"/>
-            <father ref="P383144"/>
             <mother ref="P380209"/>
-            <mother ref="P383144"/>
         </parents>
         <siblings>
             <brother ref="NAME_Tamisha_Pantaleo"/>
@@ -133288,9 +132918,7 @@
         <first-name>Corliss</first-name>
         <parents>
             <father ref="P401493"/>
-            <father ref="P398042"/>
             <mother ref="P401493"/>
-            <mother ref="P398042"/>
         </parents>
     </person>
     <person id="NAME_Cory_Risberg">
@@ -133547,9 +133175,7 @@
         <last-name>Yocham</last-name>
         <parents>
             <father ref="P392651"/>
-            <father ref="P388545"/>
             <mother ref="P392651"/>
-            <mother ref="P388545"/>
         </parents>
     </person>
     <person id="P412052"/>
@@ -136140,9 +135766,7 @@
     <person id="P389338">
         <parents>
             <father ref="P384550"/>
-            <father ref="P385067"/>
             <mother ref="P384550"/>
-            <mother ref="P385067"/>
         </parents>
     </person>
     <person id="P392970">
@@ -136407,9 +136031,7 @@
     <person id="P389355">
         <parents>
             <father ref="P385189"/>
-            <father ref="P380938"/>
             <mother ref="P385189"/>
-            <mother ref="P380938"/>
         </parents>
     </person>
     <person id="P389354">
@@ -138203,9 +137825,7 @@
         <spouse ref="P396970"/>
         <parents>
             <father ref="P390519"/>
-            <father ref="P393842"/>
             <mother ref="P390519"/>
-            <mother ref="P393842"/>
         </parents>
     </person>
     <person id="P400199">
@@ -138344,9 +137964,7 @@
         <spouse ref="P403631"/>
         <parents>
             <father ref="P391486"/>
-            <father ref="P390698"/>
             <mother ref="P391486"/>
-            <mother ref="P390698"/>
         </parents>
         <siblings>
             <brother ref="NAME_Hermelinda_Eddinger"/>
@@ -140528,9 +140146,7 @@
         <last-name>Denenberg</last-name>
         <parents>
             <father ref="P397422"/>
-            <father ref="P396911"/>
             <mother ref="P397422"/>
-            <mother ref="P396911"/>
         </parents>
     </person>
     <person id="NAME_Cecilia_">
@@ -140628,9 +140244,7 @@
         <first-name>Penelope</first-name>
         <parents>
             <father ref="P392635"/>
-            <father ref="P394822"/>
             <mother ref="P392635"/>
-            <mother ref="P394822"/>
         </parents>
     </person>
     <person id="P396505">
@@ -142536,9 +142150,7 @@
     <person id="P406525">
         <parents>
             <father ref="P403306"/>
-            <father ref="P403529"/>
             <mother ref="P403306"/>
-            <mother ref="P403529"/>
         </parents>
     </person>
     <person id="NAME_Kenny_Praylow">
@@ -143114,9 +142726,7 @@
         <last-name>Jebb</last-name>
         <parents>
             <father ref="P390083"/>
-            <father ref="P386750"/>
             <mother ref="P390083"/>
-            <mother ref="P386750"/>
         </parents>
     </person>
     <person id="NAME_Ahmed_Mccrimmon">
@@ -144843,9 +144453,7 @@
         <first-name>Alvina</first-name>
         <parents>
             <father ref="P390423"/>
-            <father ref="P386950"/>
             <mother ref="P390423"/>
-            <mother ref="P386950"/>
         </parents>
     </person>
     <person id="P394033">
@@ -145741,9 +145349,7 @@
     <person id="P406660">
         <parents>
             <father ref="P395890"/>
-            <father ref="P398212"/>
             <mother ref="P395890"/>
-            <mother ref="P398212"/>
         </parents>
     </person>
     <person id="P406661">
@@ -146382,9 +145988,7 @@
     <person id="P406684">
         <parents>
             <father ref="P395996"/>
-            <father ref="P402708"/>
             <mother ref="P395996"/>
-            <mother ref="P402708"/>
         </parents>
         <siblings>
             <brother ref="P406681"/>
@@ -147431,9 +147035,7 @@
         <spouse ref="P398429"/>
         <parents>
             <father ref="P387282"/>
-            <father ref="P393194"/>
             <mother ref="P387282"/>
-            <mother ref="P393194"/>
         </parents>
     </person>
     <person id="P396762">
@@ -147452,9 +147054,7 @@
         <gender>female</gender>
         <parents>
             <father ref="P394478"/>
-            <father ref="P392026"/>
             <mother ref="P394478"/>
-            <mother ref="P392026"/>
         </parents>
     </person>
     <person id="P394109">
@@ -149245,9 +148845,7 @@
         <spouse ref="P409128"/>
         <parents>
             <father ref="P398401"/>
-            <father ref="P400219"/>
             <mother ref="P398401"/>
-            <mother ref="P400219"/>
         </parents>
     </person>
     <person id="NAME_Josefa_Lechler">
@@ -151318,9 +150916,7 @@
     <person id="P406740">
         <parents>
             <father ref="P399154"/>
-            <father ref="P398283"/>
             <mother ref="P399154"/>
-            <mother ref="P398283"/>
         </parents>
     </person>
     <person id="P396850">
@@ -151538,9 +151134,7 @@
         <first-name>Carolee</first-name>
         <parents>
             <father ref="P383957"/>
-            <father ref="P379606"/>
             <mother ref="P383957"/>
-            <mother ref="P379606"/>
         </parents>
     </person>
     <person id="P394222">
@@ -153218,9 +152812,7 @@
         <first-name>Lynda</first-name>
         <parents>
             <father ref="P382320"/>
-            <father ref="P382615"/>
             <mother ref="P382320"/>
-            <mother ref="P382615"/>
         </parents>
     </person>
     <person id="P404243"/>
@@ -153260,9 +152852,7 @@
         <gender>male</gender>
         <parents>
             <father ref="P398183"/>
-            <father ref="P396305"/>
             <mother ref="P398183"/>
-            <mother ref="P396305"/>
         </parents>
         <siblings>
             <brother ref="P406896"/>
@@ -153977,9 +153567,7 @@
         <first-name>Rebbeca</first-name>
         <parents>
             <father ref="P403799"/>
-            <father ref="P399184"/>
             <mother ref="P403799"/>
-            <mother ref="P399184"/>
         </parents>
     </person>
     <person id="P384967">
@@ -154325,9 +153913,7 @@
     <person id="P396967">
         <parents>
             <father ref="P390705"/>
-            <father ref="P387884"/>
             <mother ref="P390705"/>
-            <mother ref="P387884"/>
         </parents>
     </person>
     <person id="P396968">
@@ -154681,9 +154267,7 @@
         <gender>male</gender>
         <parents>
             <father ref="P396887"/>
-            <father ref="P399530"/>
             <mother ref="P396887"/>
-            <mother ref="P399530"/>
         </parents>
     </person>
     <person id="P382315">
@@ -159405,9 +158989,7 @@
     <person id="P404486">
         <parents>
             <father ref="P397029"/>
-            <father ref="P402533"/>
             <mother ref="P397029"/>
-            <mother ref="P402533"/>
         </parents>
     </person>
     <person id="P404485">
@@ -161364,9 +160946,7 @@
         <gender>female</gender>
         <parents>
             <father ref="P401450"/>
-            <father ref="P396278"/>
             <mother ref="P401450"/>
-            <mother ref="P396278"/>
         </parents>
     </person>
     <person id="NAME__Emmond">
@@ -163438,9 +163018,7 @@
     <person id="P404571">
         <parents>
             <father ref="P401730"/>
-            <father ref="P399410"/>
             <mother ref="P401730"/>
-            <mother ref="P399410"/>
         </parents>
         <siblings>
             <brother ref="P404570"/>
@@ -165147,9 +164725,7 @@
     <person id="P398318">
         <parents>
             <father ref="P394595"/>
-            <father ref="P387588"/>
             <mother ref="P394595"/>
-            <mother ref="P387588"/>
         </parents>
     </person>
     <person id="P386339">
@@ -166029,9 +165605,7 @@
         <first-name>Khadijah</first-name>
         <parents>
             <father ref="P385996"/>
-            <father ref="P382944"/>
             <mother ref="P385996"/>
-            <mother ref="P382944"/>
         </parents>
         <siblings>
             <sister ref="NAME_Garth_Combs"/>
@@ -166077,9 +165651,7 @@
     <person id="P398385">
         <parents>
             <father ref="P395106"/>
-            <father ref="P394800"/>
             <mother ref="P395106"/>
-            <mother ref="P394800"/>
         </parents>
         <siblings>
             <brother ref="P398384"/>
@@ -166982,9 +166554,7 @@
     <person id="P388906">
         <parents>
             <father ref="P384904"/>
-            <father ref="P379758"/>
             <mother ref="P384904"/>
-            <mother ref="P379758"/>
         </parents>
     </person>
     <person id="P388909">
@@ -168461,9 +168031,7 @@
     <person id="P398433">
         <parents>
             <father ref="P394948"/>
-            <father ref="P394755"/>
             <mother ref="P394948"/>
-            <mother ref="P394755"/>
         </parents>
         <siblings>
             <brother ref="P398431"/>
@@ -168866,9 +168434,7 @@
     <person id="P408305">
         <parents>
             <father ref="P400351"/>
-            <father ref="P398560"/>
             <mother ref="P400351"/>
-            <mother ref="P398560"/>
         </parents>
     </person>
     <person id="P398458">
@@ -169069,9 +168635,7 @@
     <person id="P408379">
         <parents>
             <father ref="P400086"/>
-            <father ref="P402747"/>
             <mother ref="P400086"/>
-            <mother ref="P402747"/>
         </parents>
     </person>
     <person id="P398488">
@@ -169143,9 +168707,7 @@
         <last-name>Bonney</last-name>
         <parents>
             <father ref="P402147"/>
-            <father ref="P402887"/>
             <mother ref="P402147"/>
-            <mother ref="P402887"/>
         </parents>
     </person>
     <person id="NAME_Darci_Altken">
@@ -170171,9 +169733,7 @@
         <gender>male</gender>
         <parents>
             <father ref="P399978"/>
-            <father ref="P401325"/>
             <mother ref="P399978"/>
-            <mother ref="P401325"/>
         </parents>
     </person>
     <person id="NAME_Ossie_">
@@ -170256,9 +169816,7 @@
         <spouse ref="P411249"/>
         <parents>
             <father ref="P400750"/>
-            <father ref="P395856"/>
             <mother ref="P400750"/>
-            <mother ref="P395856"/>
         </parents>
     </person>
     <person id="P408286"/>
@@ -170351,9 +169909,7 @@
     <person id="P408279">
         <parents>
             <father ref="P400452"/>
-            <father ref="P401878"/>
             <mother ref="P400452"/>
-            <mother ref="P401878"/>
         </parents>
     </person>
     <person id="P408276">
@@ -170516,9 +170072,7 @@
         <last-name>Isales</last-name>
         <parents>
             <father ref="P399070"/>
-            <father ref="P398790"/>
             <mother ref="P399070"/>
-            <mother ref="P398790"/>
         </parents>
     </person>
     <person id="P408266">
@@ -170859,9 +170413,7 @@
     <person id="P398428">
         <parents>
             <father ref="P387192"/>
-            <father ref="P387418"/>
             <mother ref="P387192"/>
-            <mother ref="P387418"/>
         </parents>
     </person>
     <person id="P386449">
@@ -172225,9 +171777,7 @@
         <last-name>Vanderlinde</last-name>
         <parents>
             <father ref="P396687"/>
-            <father ref="P400143"/>
             <mother ref="P396687"/>
-            <mother ref="P400143"/>
         </parents>
     </person>
     <person id="P408415">
@@ -172821,9 +172371,7 @@
     <person id="P398502">
         <parents>
             <father ref="P391255"/>
-            <father ref="P392857"/>
             <mother ref="P391255"/>
-            <mother ref="P392857"/>
         </parents>
         <siblings>
             <brother ref="NAME_Brian_Beighley"/>
@@ -172871,9 +172419,7 @@
     <person id="P408398">
         <parents>
             <father ref="P404324"/>
-            <father ref="P396294"/>
             <mother ref="P404324"/>
-            <mother ref="P396294"/>
         </parents>
         <siblings>
             <brother ref="P408397"/>
@@ -172971,9 +172517,7 @@
     <person id="P408389">
         <parents>
             <father ref="P398320"/>
-            <father ref="P404318"/>
             <mother ref="P398320"/>
-            <mother ref="P404318"/>
         </parents>
     </person>
     <person id="P408386">
@@ -172992,9 +172536,7 @@
     <person id="P408387">
         <parents>
             <father ref="P398395"/>
-            <father ref="P395955"/>
             <mother ref="P398395"/>
-            <mother ref="P395955"/>
         </parents>
     </person>
     <person id="P408382">
@@ -173629,9 +173171,7 @@
     <person id="P396025">
         <parents>
             <father ref="P395363"/>
-            <father ref="P390920"/>
             <mother ref="P395363"/>
-            <mother ref="P390920"/>
         </parents>
         <siblings>
             <brother ref="P396026"/>
@@ -173873,9 +173413,7 @@
     <person id="P398676">
         <parents>
             <father ref="P389673"/>
-            <father ref="P386784"/>
             <mother ref="P389673"/>
-            <mother ref="P386784"/>
         </parents>
     </person>
     <person id="P396013">
@@ -173985,9 +173523,7 @@
     <person id="P408560">
         <parents>
             <father ref="P402035"/>
-            <father ref="P396680"/>
             <mother ref="P402035"/>
-            <mother ref="P396680"/>
         </parents>
         <siblings>
             <brother ref="P408559"/>
@@ -174454,9 +173990,7 @@
     <person id="P408542">
         <parents>
             <father ref="P400848"/>
-            <father ref="P402625"/>
             <mother ref="P400848"/>
-            <mother ref="P402625"/>
         </parents>
     </person>
     <person id="P384051">
@@ -174511,9 +174045,7 @@
         <first-name>Madalene</first-name>
         <parents>
             <father ref="P395346"/>
-            <father ref="P394493"/>
             <mother ref="P395346"/>
-            <mother ref="P394493"/>
         </parents>
     </person>
     <person id="P398694"/>
@@ -174547,9 +174079,7 @@
         <gender>female</gender>
         <parents>
             <father ref="P390791"/>
-            <father ref="P390108"/>
             <mother ref="P390791"/>
-            <mother ref="P390108"/>
         </parents>
     </person>
     <person id="P396030">
@@ -174693,9 +174223,7 @@
         <spouse name="NONE"/>
         <parents>
             <father ref="P392163"/>
-            <father ref="P388376"/>
             <mother ref="P392163"/>
-            <mother ref="P388376"/>
         </parents>
     </person>
     <person id="P396061">
@@ -175413,9 +174941,7 @@
     <person id="P408524">
         <parents>
             <father ref="P401477"/>
-            <father ref="P403812"/>
             <mother ref="P401477"/>
-            <mother ref="P403812"/>
         </parents>
         <siblings>
             <sister ref="P408525"/>
@@ -176163,9 +175689,7 @@
         <first-name>Vena</first-name>
         <parents>
             <father ref="P391999"/>
-            <father ref="P389965"/>
             <mother ref="P391999"/>
-            <mother ref="P389965"/>
         </parents>
     </person>
     <person id="P398627">
@@ -176877,9 +176401,7 @@
     <person id="P398661">
         <parents>
             <father ref="P389010"/>
-            <father ref="P389453"/>
             <mother ref="P389010"/>
-            <mother ref="P389453"/>
         </parents>
         <children>
             <daughter ref="P406017"/>
@@ -177572,9 +177094,7 @@
         <spouse ref="P399378"/>
         <parents>
             <father ref="P390174"/>
-            <father ref="P387045"/>
             <mother ref="P390174"/>
-            <mother ref="P387045"/>
         </parents>
     </person>
     <person id="P398790">
@@ -178298,9 +177818,7 @@
         <last-name>Roker</last-name>
         <parents>
             <father ref="P396766"/>
-            <father ref="P399227"/>
             <mother ref="P396766"/>
-            <mother ref="P399227"/>
         </parents>
     </person>
     <person id="NAME_Verena_Chamness">
@@ -178469,9 +177987,7 @@
     <person id="P396198">
         <parents>
             <father ref="P387271"/>
-            <father ref="P392721"/>
             <mother ref="P387271"/>
-            <mother ref="P392721"/>
         </parents>
         <siblings>
             <brother ref="P396199"/>
@@ -178815,9 +178331,7 @@
         <gender>female</gender>
         <parents>
             <father ref="P399318"/>
-            <father ref="P401400"/>
             <mother ref="P399318"/>
-            <mother ref="P401400"/>
         </parents>
     </person>
     <person id="P408656">
@@ -179862,9 +179376,7 @@
         <first-name>Brent</first-name>
         <parents>
             <father ref="P381113"/>
-            <father ref="P383868"/>
             <mother ref="P381113"/>
-            <mother ref="P383868"/>
         </parents>
     </person>
     <person id="P398746">
@@ -181472,9 +180984,7 @@
     <person id="P396252">
         <parents>
             <father ref="P387208"/>
-            <father ref="P392247"/>
             <mother ref="P387208"/>
-            <mother ref="P392247"/>
         </parents>
     </person>
     <person id="NAME_Hiedi_Hoecker">
@@ -181497,9 +181007,7 @@
         <first-name>Yelena</first-name>
         <parents>
             <father ref="P396882"/>
-            <father ref="P400741"/>
             <mother ref="P396882"/>
-            <mother ref="P400741"/>
         </parents>
         <siblings>
             <brother ref="P406140"/>
@@ -181532,9 +181040,7 @@
         <gender>male</gender>
         <parents>
             <father ref="P396963"/>
-            <father ref="P396594"/>
             <mother ref="P396963"/>
-            <mother ref="P396594"/>
         </parents>
     </person>
     <person id="P406135">
@@ -181674,9 +181180,7 @@
         <gender>male</gender>
         <parents>
             <father ref="P403766"/>
-            <father ref="P403804"/>
             <mother ref="P403766"/>
-            <mother ref="P403804"/>
         </parents>
     </person>
     <person id="P396281">
@@ -181723,9 +181227,7 @@
     <person id="P408786">
         <parents>
             <father ref="P402103"/>
-            <father ref="P397829"/>
             <mother ref="P402103"/>
-            <mother ref="P397829"/>
         </parents>
     </person>
     <person id="P396277">
@@ -182912,9 +182414,7 @@
         <last-name>Sleeper</last-name>
         <parents>
             <father ref="P397547"/>
-            <father ref="P400520"/>
             <mother ref="P397547"/>
-            <mother ref="P400520"/>
         </parents>
     </person>
     <person id="NAME__Mammucari">
@@ -183120,9 +182620,7 @@
         <last-name>Carcia</last-name>
         <parents>
             <father ref="P398238"/>
-            <father ref="P403777"/>
             <mother ref="P398238"/>
-            <mother ref="P403777"/>
         </parents>
         <siblings>
             <brother ref="P408672"/>
@@ -183301,9 +182799,7 @@
     <person id="P398808">
         <parents>
             <father ref="P392742"/>
-            <father ref="P386811"/>
             <mother ref="P392742"/>
-            <mother ref="P386811"/>
         </parents>
         <siblings>
             <brother ref="P398809"/>
@@ -183941,9 +183437,7 @@
         <first-name>Allyn</first-name>
         <parents>
             <father ref="P388618"/>
-            <father ref="P392982"/>
             <mother ref="P388618"/>
-            <mother ref="P392982"/>
         </parents>
         <siblings>
             <brother ref="NAME_Kristi_Minium"/>
@@ -184138,9 +183632,7 @@
     <person id="P398866">
         <parents>
             <father ref="P386691"/>
-            <father ref="P391413"/>
             <mother ref="P386691"/>
-            <mother ref="P391413"/>
         </parents>
     </person>
     <person id="P396202">
@@ -184229,9 +183721,7 @@
     <person id="P396208">
         <parents>
             <father ref="P394353"/>
-            <father ref="P388300"/>
             <mother ref="P394353"/>
-            <mother ref="P388300"/>
         </parents>
     </person>
     <person id="P396209">
@@ -184315,9 +183805,7 @@
     <person id="P386881">
         <parents>
             <father ref="P381471"/>
-            <father ref="P380578"/>
             <mother ref="P381471"/>
-            <mother ref="P380578"/>
         </parents>
     </person>
     <person id="P386882">
@@ -184699,9 +184187,7 @@
         <spouse name="Bobbie Vactor"/>
         <parents>
             <father ref="P387648"/>
-            <father ref="P393629"/>
             <mother ref="P387648"/>
-            <mother ref="P393629"/>
         </parents>
     </person>
     <person id="P384248">
@@ -185409,9 +184895,7 @@
     <person id="P396382">
         <parents>
             <father ref="P391711"/>
-            <father ref="P392543"/>
             <mother ref="P391711"/>
-            <mother ref="P392543"/>
         </parents>
     </person>
     <person id="NAME_Dahlia_Wheaton">
@@ -185474,9 +184958,7 @@
     <person id="P406267">
         <parents>
             <father ref="P399930"/>
-            <father ref="P398598"/>
             <mother ref="P399930"/>
-            <mother ref="P398598"/>
         </parents>
     </person>
     <person id="P396377">
@@ -186564,9 +186046,7 @@
     <person id="P408889">
         <parents>
             <father ref="P403171"/>
-            <father ref="P398704"/>
             <mother ref="P403171"/>
-            <mother ref="P398704"/>
         </parents>
     </person>
     <person id="P406226">
@@ -186735,9 +186215,7 @@
         <spouse name="NONE"/>
         <parents>
             <father ref="P398765"/>
-            <father ref="P396693"/>
             <mother ref="P398765"/>
-            <mother ref="P396693"/>
         </parents>
         <siblings>
             <brother ref="P408880"/>
@@ -186890,17 +186368,13 @@
     <person id="P406207">
         <parents>
             <father ref="P400680"/>
-            <father ref="P402689"/>
             <mother ref="P400680"/>
-            <mother ref="P402689"/>
         </parents>
     </person>
     <person id="P408863">
         <parents>
             <father ref="P396110"/>
-            <father ref="P399598"/>
             <mother ref="P396110"/>
-            <mother ref="P399598"/>
         </parents>
         <siblings>
             <sister ref="P408862"/>
@@ -186924,9 +186398,7 @@
     <person id="P408865">
         <parents>
             <father ref="P399428"/>
-            <father ref="P398324"/>
             <mother ref="P399428"/>
-            <mother ref="P398324"/>
         </parents>
         <siblings>
             <brother ref="P408866"/>
@@ -187522,9 +186994,7 @@
         <gender>male</gender>
         <parents>
             <father ref="P400797"/>
-            <father ref="P397617"/>
             <mother ref="P400797"/>
-            <mother ref="P397617"/>
         </parents>
     </person>
     <person id="P398910">
@@ -187936,18 +187406,14 @@
     <person id="P386957">
         <parents>
             <father ref="P382761"/>
-            <father ref="P384177"/>
             <mother ref="P382761"/>
-            <mother ref="P384177"/>
         </parents>
     </person>
     <person id="P386958">
         <spouse ref="P388715"/>
         <parents>
             <father ref="P382761"/>
-            <father ref="P384177"/>
             <mother ref="P382761"/>
-            <mother ref="P384177"/>
         </parents>
     </person>
     <person id="P386959">
@@ -190199,9 +189665,7 @@
         <first-name>Georgia</first-name>
         <parents>
             <father ref="P397481"/>
-            <father ref="P398549"/>
             <mother ref="P397481"/>
-            <mother ref="P398549"/>
         </parents>
     </person>
     <person id="NAME_Kaci_Powless">
@@ -190392,9 +189856,7 @@
     <person id="P408958">
         <parents>
             <father ref="P402387"/>
-            <father ref="P398968"/>
             <mother ref="P402387"/>
-            <mother ref="P398968"/>
         </parents>
     </person>
     <person id="NAME_Cecila_Farlin">
@@ -190665,9 +190127,7 @@
         <gender>female</gender>
         <parents>
             <father ref="P399516"/>
-            <father ref="P403282"/>
             <mother ref="P399516"/>
-            <mother ref="P403282"/>
         </parents>
     </person>
     <person id="P408998">
@@ -191062,9 +190522,7 @@
         <spouse name="NONE"/>
         <parents>
             <father ref="P398018"/>
-            <father ref="P404084"/>
             <mother ref="P398018"/>
-            <mother ref="P404084"/>
         </parents>
     </person>
     <person id="P408932"/>
@@ -191418,9 +190876,7 @@
     <person id="P408900">
         <parents>
             <father ref="P402791"/>
-            <father ref="P397339"/>
             <mother ref="P402791"/>
-            <mother ref="P397339"/>
         </parents>
     </person>
     <person id="P408902">
@@ -191527,9 +190983,7 @@
         <gender>female</gender>
         <parents>
             <father ref="P390490"/>
-            <father ref="P390022"/>
             <mother ref="P390490"/>
-            <mother ref="P390022"/>
         </parents>
         <siblings>
             <brother ref="P396419"/>
@@ -195105,9 +194559,7 @@
     <person id="P388209">
         <parents>
             <father ref="P384621"/>
-            <father ref="P385437"/>
             <mother ref="P384621"/>
-            <mother ref="P385437"/>
         </parents>
         <children>
             <daughter ref="P397664"/>
@@ -196084,9 +195536,7 @@
     <person id="P388280">
         <parents>
             <father ref="P380287"/>
-            <father ref="P381213"/>
             <mother ref="P380287"/>
-            <mother ref="P381213"/>
         </parents>
         <siblings>
             <brother ref="P388279"/>
@@ -198995,9 +198445,7 @@
         <first-name>Fermin</first-name>
         <parents>
             <father ref="P382887"/>
-            <father ref="P382104"/>
             <mother ref="P382887"/>
-            <mother ref="P382104"/>
         </parents>
     </person>
     <person id="P388392"/>
@@ -199135,9 +198583,7 @@
         <gender>female</gender>
         <parents>
             <father ref="P387316"/>
-            <father ref="P394723"/>
             <mother ref="P387316"/>
-            <mother ref="P394723"/>
         </parents>
     </person>
     <person id="NAME_Charlie_">
@@ -201180,9 +200626,7 @@
         <last-name>Castagna</last-name>
         <parents>
             <father ref="P379767"/>
-            <father ref="P382108"/>
             <mother ref="P379767"/>
-            <mother ref="P382108"/>
         </parents>
     </person>
     <person id="P388453">
@@ -201227,9 +200671,7 @@
         <spouse ref="P388562"/>
         <parents>
             <father ref="P380175"/>
-            <father ref="P385140"/>
             <mother ref="P380175"/>
-            <mother ref="P385140"/>
         </parents>
     </person>
     <person id="P401953"/>
@@ -201729,9 +201171,7 @@
         <last-name>Floria</last-name>
         <parents>
             <father ref="P385409"/>
-            <father ref="P382190"/>
             <mother ref="P385409"/>
-            <mother ref="P382190"/>
         </parents>
     </person>
     <person id="NAME_Lu_Marbus">
@@ -201761,9 +201201,7 @@
         <first-name>Lettie</first-name>
         <parents>
             <father ref="P392910"/>
-            <father ref="P389985"/>
             <mother ref="P392910"/>
-            <mother ref="P389985"/>
         </parents>
     </person>
     <person id="NAME_Nikita_Kutcher">
@@ -202863,9 +202301,7 @@
     <person id="P388519">
         <parents>
             <father ref="P380627"/>
-            <father ref="P381803"/>
             <mother ref="P380627"/>
-            <mother ref="P381803"/>
         </parents>
     </person>
     <person id="NAME_Lara_Plakke">
@@ -203515,9 +202951,7 @@
         <spouse name="NONE"/>
         <parents>
             <father ref="P398265"/>
-            <father ref="P400701"/>
             <mother ref="P398265"/>
-            <mother ref="P400701"/>
         </parents>
         <siblings>
             <sister ref="P407026"/>
@@ -204899,9 +204333,7 @@
         <spouse ref="P391246"/>
         <parents>
             <father ref="P379642"/>
-            <father ref="P385748"/>
             <mother ref="P379642"/>
-            <mother ref="P385748"/>
         </parents>
     </person>
     <person id="NAME_Arminda_Scaglione">
@@ -205329,9 +204761,7 @@
         <first-name>Stepanie</first-name>
         <parents>
             <father ref="P387511"/>
-            <father ref="P390416"/>
             <mother ref="P387511"/>
-            <mother ref="P390416"/>
         </parents>
     </person>
     <person id="P388682">
@@ -206476,9 +205906,7 @@
     <person id="P398062">
         <parents>
             <father ref="P394367"/>
-            <father ref="P392295"/>
             <mother ref="P394367"/>
-            <mother ref="P392295"/>
         </parents>
     </person>
     <person id="P398061">
@@ -208425,9 +207853,7 @@
     <person id="P408019">
         <parents>
             <father ref="P396169"/>
-            <father ref="P400388"/>
             <mother ref="P396169"/>
-            <mother ref="P400388"/>
         </parents>
         <siblings>
             <brother ref="P408018"/>
@@ -212075,9 +211501,7 @@
     <person id="P408110">
         <parents>
             <father ref="P402636"/>
-            <father ref="P398164"/>
             <mother ref="P402636"/>
-            <mother ref="P398164"/>
         </parents>
     </person>
     <person id="P411764">
@@ -212226,9 +211650,7 @@
     <person id="P408104">
         <parents>
             <father ref="P399610"/>
-            <father ref="P395835"/>
             <mother ref="P399610"/>
-            <mother ref="P395835"/>
         </parents>
     </person>
     <person id="P398258">
@@ -212534,9 +211956,7 @@
     <person id="P398281">
         <parents>
             <father ref="P388690"/>
-            <father ref="P390855"/>
             <mother ref="P388690"/>
-            <mother ref="P390855"/>
         </parents>
     </person>
     <person id="NAME_Darleen_Hadder">
@@ -213320,9 +212740,7 @@
         <last-name>Kinslow</last-name>
         <parents>
             <father ref="P382252"/>
-            <father ref="P380369"/>
             <mother ref="P382252"/>
-            <mother ref="P380369"/>
         </parents>
         <siblings>
             <brother ref="P388801"/>
@@ -213614,9 +213032,7 @@
         <first-name>Kerri</first-name>
         <parents>
             <father ref="P399439"/>
-            <father ref="P398177"/>
             <mother ref="P399439"/>
-            <mother ref="P398177"/>
         </parents>
     </person>
     <person id="NAME_Johnsie_Cappucci">
@@ -213642,9 +213058,7 @@
         <last-name>Corrieri</last-name>
         <parents>
             <father ref="P399439"/>
-            <father ref="P398177"/>
             <mother ref="P399439"/>
-            <mother ref="P398177"/>
         </parents>
     </person>
     <person id="P411675"/>
@@ -214344,9 +213758,7 @@
         <gender>female</gender>
         <parents>
             <father ref="P384531"/>
-            <father ref="P380527"/>
             <mother ref="P384531"/>
-            <mother ref="P380527"/>
         </parents>
     </person>
     <person id="P388853">
